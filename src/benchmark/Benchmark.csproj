@@ -50,9 +50,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MMCM\MMCMLibrary\MMCMLibrary.csproj">
+    <ProjectReference Include="..\MMCM\MMCMLibrary\MMCM.NET.csproj">
       <Project>{CCD18CD0-079C-4A60-A7F1-90933DD14D37}</Project>
-      <Name>MMCMLibrary</Name>
+      <Name>MMCM.NET</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
