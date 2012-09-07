@@ -1,0 +1,133 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/8.1/vpj.dtd">
+<Project
+	Version="8.1"
+	VendorName="SlickEdit"
+	WorkingDir="."
+	AssociatedFile="Metaphone.NET.csproj"
+	AssociatedFileType="microsoft visual studio csharp">
+	<Config
+		Name="Debug"
+		ObjectDir=".\bin\Debug\">
+		<Includes>
+			<Include Dir="%(INCLUDE)"/>
+		</Includes>
+		<Menu>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				RunFromDir="%rw"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveWorkspaceFiles">
+				<Exec CmdLine='devenv "%w" /build "%b" /project "%rm"'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				RunFromDir="%rw"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveWorkspaceFiles">
+				<Exec CmdLine='devenv "%rm" /rebuild "%b"'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				RunFromDir="%rw">
+				<Exec CmdLine='devenv "%w"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%boMetaphone.NET.exe"'/>
+			</Target>
+			<Target
+				Name="Resource Editor"
+				MenuCaption="Resource Editor"
+				ShowOnMenu="HideIfNoCmdLine"
+				RunFromDir="%rw"
+				SaveOption="SaveWorkspaceFiles">
+				<Exec CmdLine="devenv"/>
+			</Target>
+			<Target
+				Name="Build Soluttion"
+				MenuCaption="Build Solution"
+				ShowOnMenu="HideIfNoCmdLine"
+				RunFromDir="%rw"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveWorkspaceFiles">
+				<Exec CmdLine='devenv "%w" /build "%b"'/>
+			</Target>
+		</Menu>
+	</Config>
+	<Config
+		Name="Release"
+		ObjectDir=".\bin\Release\">
+		<Includes>
+			<Include Dir="%(INCLUDE)"/>
+		</Includes>
+		<Menu>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				RunFromDir="%rw"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveWorkspaceFiles">
+				<Exec CmdLine='devenv "%w" /build "%b" /project "%rm"'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				RunFromDir="%rw"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveWorkspaceFiles">
+				<Exec CmdLine='devenv "%rm" /rebuild "%b"'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				RunFromDir="%rw">
+				<Exec CmdLine='devenv "%w"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%boMetaphone.NET.exe"'/>
+			</Target>
+			<Target
+				Name="Resource Editor"
+				MenuCaption="Resource Editor"
+				ShowOnMenu="HideIfNoCmdLine"
+				RunFromDir="%rw"
+				SaveOption="SaveWorkspaceFiles">
+				<Exec CmdLine="devenv"/>
+			</Target>
+			<Target
+				Name="Build Soluttion"
+				MenuCaption="Build Solution"
+				ShowOnMenu="HideIfNoCmdLine"
+				RunFromDir="%rw"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveWorkspaceFiles">
+				<Exec CmdLine='devenv "%w" /build "%b"'/>
+			</Target>
+		</Menu>
+	</Config>
+	<Files AutoFolders="DirectoryView">
+		<Folder
+			Name="Source Files"
+			Filters="*.c;*.cc;*.cpp;*.cp;*.cxx;*.prg;*.pas;*.dpr;*.asm;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.vb"/>
+		<Folder
+			Name="Header Files"
+			Filters="*.h;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if"/>
+		<Folder
+			Name="Resource Files"
+			Filters="*.ico;*.cur;*.dlg"/>
+		<Folder
+			Name="Bitmaps"
+			Filters="*.bmp"/>
+		<Folder
+			Name="Other Files"
+			Filters=""/>
+	</Files>
+</Project>
