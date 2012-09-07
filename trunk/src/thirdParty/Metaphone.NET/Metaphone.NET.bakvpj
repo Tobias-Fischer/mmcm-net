@@ -1,0 +1,25 @@
+[ASSOCIATION]
+makefile=Metaphone.NET.csproj
+makefiledate=
+makefiletype=microsoft visual studio csharp
+[GLOBAL]
+workingdir=.
+version=7.0
+packname=Microsoft Visual Studio  >= 7.0 C#
+[CONFIGURATIONS]
+[COMPILER.Debug]
+INCLUDEDIRS=%(INCLUDE)
+MAKE=copts: saveworkspacefiles|concur|capturecmd: devenv "%w" /build "%b" /project "%rm"
+REBUILD=copts: saveworkspacefiles|concur|capturecmd: devenv "%rm" /rebuild "%b"
+DEBUG=cmd: devenv "%w"
+EXECUTE=cmd: "%boMetaphone.NET.exe"
+usertool_resource_editor=copts: saveworkspacefiles|hide|menu: Resource Editor:Resource Editorcmd: devenv
+usertool_build_solution=copts: saveworkspacefiles|hide|concur|capturemenu: Build Soluttion:Build Solutioncmd: devenv "%w" /build "%b"
+[COMPILER.Release]
+INCLUDEDIRS=%(INCLUDE)
+MAKE=copts: saveworkspacefiles|concur|capturecmd: devenv "%w" /build "%b" /project "%rm"
+REBUILD=copts: saveworkspacefiles|concur|capturecmd: devenv "%rm" /rebuild "%b"
+DEBUG=cmd: devenv "%w"
+EXECUTE=cmd: "%boMetaphone.NET.exe"
+usertool_resource_editor=copts: saveworkspacefiles|hide|menu: Resource Editor:Resource Editorcmd: devenv
+usertool_build_solution=copts: saveworkspacefiles|hide|concur|capturemenu: Build Soluttion:Build Solutioncmd: devenv "%w" /build "%b"
