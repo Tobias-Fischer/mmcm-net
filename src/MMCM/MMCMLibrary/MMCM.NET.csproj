@@ -56,10 +56,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Accelerator">
-      <HintPath>..\..\..\..\..\..\..\..\accelerator2.0\bin\Managed\Microsoft.Accelerator.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ParallelArrays.CUDATarget">
-      <HintPath>..\..\..\..\..\..\..\..\accelerator2.0\bin\Managed\Microsoft.ParallelArrays.CUDATarget.dll</HintPath>
+      <HintPath>..\..\..\..\libraries\Accelerator\bin\Managed\Microsoft.Accelerator.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -76,9 +73,8 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="YarpCS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\yarp2\example\swig\buildCS\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
+    <Reference Include="YarpCS">
+      <HintPath>..\..\..\..\yarp2\bindings\buildCS\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -173,8 +169,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetPath) %25EFAA_DIR%25\bin\Release\
-copy $(TargetDir)\YarpCS.dll %25EFAA_DIR%25\bin\Release\</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
