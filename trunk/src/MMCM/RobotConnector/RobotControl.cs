@@ -29,7 +29,7 @@ namespace RobotConnector
         {
             Property options = new Property();
             options.put("device", "remote_controlboard");
-            options.put("robot", "icub");
+		  options.put("robot", robotName);
             options.put("part", partName);
             options.put("remote", robotName + "/" + partName);
             options.put("local", localName + robotName + "/" + partName);
@@ -48,9 +48,9 @@ namespace RobotConnector
             robot.AddPart("head");
             robot.AddPart("right_arm");
             robot.AddPart("left_arm");
-            //robot.AddPart("right_leg");
-            //robot.AddPart("left_leg");
-            //robot.AddPart("torso");
+            robot.AddPart("right_leg");
+            robot.AddPart("left_leg");
+            robot.AddPart("torso");
             return robot;
         }
 
@@ -59,10 +59,35 @@ namespace RobotConnector
             throw new NotImplementedException();
         }
 
+	   public bool GetPos(string part, ref double[] values)
+	   {
+
+		  int jntNumber = encs[part].getAxes();
+		  values = new double[jntNumber];
+		  for (int j = 0; j < jntNumber; j++)
+		  {
+			 values[j] = encs[part].getEncoder(j);
+		  }
+
+		  return true;
+	   }
+
+	   public bool SetPos(string part, double[] values)
+	   {
+		  DVector vals = new DVector(values);
+		  return posCtrl[part].positionMove(vals);
+	   }
+
+	   public bool SetPos(string part, int jnt, double val)
+	   {
+		  return posCtrl[part].positionMove(jnt, val);
+	   }
+
         public bool GetScaledPos(string part, ref double[] values)
         {
 
-            int jntNumber = encs[part].getAxes();
+		  int jntNumber = encs[part].getAxes();
+		  values = new double[jntNumber];
             for (int j = 0; j < jntNumber; j++)
             {
                 values[j] = encs[part].getEncoder(j);

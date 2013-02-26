@@ -62,7 +62,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="YarpCS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\yarp2\bindings\buildCS\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
+      <HintPath>..\..\..\..\yarp2\bindings\csBuild\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -99,8 +99,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy $(TargetPath) $(SolutionDir)\..\bin</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
