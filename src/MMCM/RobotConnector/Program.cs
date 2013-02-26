@@ -15,7 +15,7 @@ namespace RobotConnector
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new OverviewForm());
+            Application.Run(new AnimationForm());
         }
     }
 }

@@ -207,7 +207,7 @@ namespace MMCMLibrary
                 if (predictionErrorCheckBoxLog.Checked)
                     foreach (IModality m in m_map.modalities.Values)
                     {
-                        chartPredictionError.Series[m.name].Points.AddY(m.GetPredictionError);
+                        chartPredictionError.Series[m.name].Points.AddY(m.RealErrorMean());
                         //errorLogs[m.name].Add(m.GetPredictionError);
                     }
 
@@ -496,6 +496,14 @@ namespace MMCMLibrary
         }
 
 #endregion
+
+	   private void checkBoxLogError_CheckedChanged(object sender, EventArgs e)
+	   {
+		  if (checkBoxLogError.CheckState == CheckState.Checked)
+			 m_map.startLoggingError(m_map.name + "_error.txt");
+		  else
+			 m_map.stopLoggingError();
+	   }
 
 
 

@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using MMCMLibrary.Modalities;
+using System.IO;
 
 
 namespace MMCMLibrary
@@ -18,6 +19,47 @@ namespace MMCMLibrary
         /// The name of the CVZ. It will be used to identify it on the yarp network.
         /// </summary>
         public string name;
+
+	   [NonSerialized]
+	   private StreamWriter errorLog = null;
+
+	   /// <summary>
+	   /// Start recording the error of each modality at each step.
+	   /// Calling this function successively without calling stop will raise an exception.
+	   /// </summary>
+	   /// <param name="fileName"></param>
+	   public void startLoggingError(string fileName)
+	   {
+		  if (errorLog == null)
+		  {
+			 errorLog = File.CreateText("C:/logMMCM/" + fileName);
+			 errorLog.AutoFlush = true;
+			 foreach (KeyValuePair<string, IModality> k in modalities)
+			 {
+				errorLog.Write(k.Key + "\t");
+			 }
+
+			 if (hierarchicalModality != null)
+			 {
+				errorLog.Write("hierarchical \t");
+			 }
+			 errorLog.WriteLine();
+		  }
+		  else
+			 throw new Exception("errorLog StreamWriter is already opened");
+	   }
+
+	   /// <summary>
+	   /// Stop logging error and save the buffer to the HD.
+	   /// </summary>
+	   public void stopLoggingError()
+	   {
+		  if (errorLog != null)
+		  {
+			 errorLog.Close();
+			 errorLog = null;
+		  }
+	   }
 
         /// <summary>
         /// A list of all the modalities.
@@ -79,6 +121,12 @@ namespace MMCMLibrary
 
             feedbackInfluence = influence;
             hierarchicalModality = new YarpModalityVector(name, "hierarchical", size);
+
+		  if (errorLog != null)
+		  {
+			 stopLoggingError();
+			 Console.WriteLine("AddHierarchicalModality: logging of error stopped");
+		  }
         }
 
         /// <summary>
@@ -118,12 +166,22 @@ namespace MMCMLibrary
         {
             modalities.Add(m.name, m);
             modalitiesInfluence.Add(m.name, influence);
+		  if (errorLog != null)
+		  {
+			 stopLoggingError();
+			 Console.WriteLine("AddModality: logging of error stopped");
+		  }
         }
 
         public virtual void RemoveModality(string modalityName)
         {
             modalities.Remove(modalityName);
-            modalitiesInfluence.Remove(modalityName);
+		  modalitiesInfluence.Remove(modalityName); 
+		  if (errorLog != null)
+		  {
+			 stopLoggingError();
+			 Console.WriteLine("RemoveModality: logging of error stopped");
+		  }
         }
 
         public IConvergenceZone(string _name)
@@ -135,6 +193,8 @@ namespace MMCMLibrary
 
         public void Dispose()
         {
+	       stopLoggingError();
+
             foreach (KeyValuePair<string, IModality> k in modalities)
             {
                 k.Value.Dispose();
@@ -253,15 +313,21 @@ namespace MMCMLibrary
             {
                 k.Value.WritePredictedValue();
                 k.Value.WriteErrorValue();
-                k.Value.WritePerceivedValue();
+			 k.Value.WritePerceivedValue();
+			 if (errorLog != null)
+				errorLog.Write(k.Value.RealErrorMean() + "\t");
             }
 
             if (hierarchicalModality != null)
             {
                 hierarchicalModality.WritePredictedValue();
                 hierarchicalModality.WriteErrorValue();
-                hierarchicalModality.WritePerceivedValue();
-            }
+			 hierarchicalModality.WritePerceivedValue();
+			 if (errorLog != null)
+				errorLog.Write(hierarchicalModality.RealErrorMean() + "\t");
+		  }
+		  if (errorLog != null)
+			 errorLog.WriteLine();
         }
 
         /// <summary>
@@ -276,15 +342,24 @@ namespace MMCMLibrary
             {
                 k.Value.WritePredictedValue();
                 k.Value.WriteErrorValue();
-                k.Value.WritePerceivedValue();
+			 k.Value.WritePerceivedValue();
+			 if (errorLog != null)
+				errorLog.Write(k.Value.RealErrorMean() + "\t");
+            
             }
 
             if (hierarchicalModality != null)
             {
                 hierarchicalModality.WritePredictedValue();
                 hierarchicalModality.WriteErrorValue();
-                hierarchicalModality.WritePerceivedValue();
+			 hierarchicalModality.WritePerceivedValue();
+			 if (errorLog != null)
+				errorLog.Write(hierarchicalModality.RealErrorMean() + "\t");
+   
             }
+
+		  if (errorLog != null)
+			 errorLog.WriteLine() ;
         }
 
         /// <summary>
@@ -302,14 +377,22 @@ namespace MMCMLibrary
                 k.Value.WritePredictedValue();
                 k.Value.WriteErrorValue();
                 k.Value.WritePerceivedValue();
+
+			 if (errorLog != null)
+				errorLog.Write(k.Value.RealErrorMean()+"\t");
             }
 
             if (hierarchicalModality != null)
             {
                 hierarchicalModality.WritePredictedValue();
                 hierarchicalModality.WriteErrorValue();
-                hierarchicalModality.WritePerceivedValue();
-            }
+			 hierarchicalModality.WritePerceivedValue();
+
+			 if (errorLog != null)
+				errorLog.Write(hierarchicalModality.RealErrorMean() + "\t");
+		  }
+		  if (errorLog != null)
+			 errorLog.WriteLine();
         }
 
 

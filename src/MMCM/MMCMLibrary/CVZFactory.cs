@@ -110,7 +110,11 @@ namespace MMCMLibrary
                             if (modalityGroup.check("autoconnect"))
                             {
                                 string sourceConnection = modalityGroup.find("autoconnect").asString().c_str();
-                                Network.connect(sourceConnection, YarpModalityVector.getRealPortName(mapName, name));
+						  while (!Network.connect(sourceConnection, YarpModalityVector.getRealPortName(mapName, name)))
+						  {
+							 Console.WriteLine("Waiting for..." + sourceConnection);
+							 Time.delay(1.0);
+						  }
                             }
                             break;
                         }
@@ -155,6 +159,18 @@ namespace MMCMLibrary
                             }
                             break;
                         }
+				case "yarpSound":
+				    {
+					   int size = modalityGroup.check("size", new Value(512)).asInt();
+					   mod = new YarpModalitySound(mapName, name, size);
+					   Console.WriteLine("Buffer: " + size);
+					   if (modalityGroup.check("autoconnect"))
+					   {
+						  string sourceConnection = modalityGroup.find("autoconnect").asString().c_str();
+						  Network.connect(sourceConnection, YarpModalityVector.getRealPortName(mapName, name));
+					   }
+					   break;
+				    }
                 }
 
                 Console.WriteLine();

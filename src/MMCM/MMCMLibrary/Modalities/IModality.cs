@@ -71,6 +71,50 @@ namespace MMCMLibrary.Modalities
             }
         }
 
+	   /// <summary>
+	   /// Calculation of current real error vector (real - predicted)
+	   /// </summary>
+	   public float[] RealErrorValue()
+	   {
+		  float[] error = new float[size];
+		  for (int i = 0; i < size; i++)
+			 error[i] = Math.Abs(realValue[i] - predictedValue[i]);
+		  return error;
+	   }
+
+	   /// <summary>
+	   /// Calculation of current perceived error vector (perceived - predicted)
+	   /// </summary>
+	   public float[] PerceivedErrorValue()
+	   {
+		  float[] error = new float[size];
+		  for (int i = 0; i < size; i++)
+			 error[i] = Math.Abs(perceivedValue[i] - predictedValue[i]);
+		  return error;
+	   }
+	   
+	   /// <summary>
+	   /// Calculation of current mean of perceived error (perceived - predicted)/size
+	   /// </summary>
+	   public float PerceivedErrorMean()
+	   {
+		  float error = 0.0f;
+		  for (int i = 0; i < size; i++)
+			 error += Math.Abs(perceivedValue[i] - predictedValue[i]);
+		  return error/(float)size;
+	   }
+	   
+	   /// <summary>
+	   /// Calculation of current mean of real error (real - predicted)/size
+	   /// </summary>
+	   public float RealErrorMean()
+	   {
+		  float error = 0.0f;
+		  for (int i = 0; i < size; i++)
+			 error += Math.Abs(realValue[i] - predictedValue[i]);
+		  return error / (float)size;
+	   }
+
         /// <summary>
         /// Read/Write access for the predicted value
         /// </summary>
@@ -98,20 +142,21 @@ namespace MMCMLibrary.Modalities
             }
         }
 
-        /// <summary>
-        /// Read only access for the prediction error
-        /// </summary>
-        public float GetPredictionError
-        {
-            get
-            {
-                float error = 0.0f;
-                for (int i = 0; i < size; i++)
-                    error += Math.Abs(realValue[i] - predictedValue[i]);
-                error /= size;
-                return error;
-            }
-        }
+	   //Deprecated, added functions to deal with different kinds of errors
+	   ///// <summary>
+	   ///// Read only access for the prediction error
+	   ///// </summary>
+	   //public float GetPredictionError
+	   //{
+	   //    get
+	   //    {
+	   //        float error = 0.0f;
+	   //        for (int i = 0; i < size; i++)
+	   //            error += Math.Abs(realValue[i] - predictedValue[i]);
+	   //        error /= size;
+	   //        return error;
+	   //    }
+	   //}
         #endregion Properties
 
         /// <summary>

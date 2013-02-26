@@ -20,12 +20,12 @@ namespace RobotConnector
         double[] head = new double[6];
         System.Threading.Thread mThread;
 
-        BufferedPortBottle portOutHeadScaled;
-        //BufferedPortBottle portOutTorsoScaled;
-        BufferedPortBottle portOutLeftArmScaled;
-        BufferedPortBottle portOutRightArmScaled;
-        //BufferedPortBottle portOutRightLegScaled;
-        //BufferedPortBottle portOutLeftLegScaled;
+	   BufferedPortBottle portOutHeadScaled;
+	   BufferedPortBottle portOutTorsoScaled;
+	   BufferedPortBottle portOutLeftArmScaled;
+	   BufferedPortBottle portOutRightArmScaled;
+	   BufferedPortBottle portOutRightLegScaled;
+	   BufferedPortBottle portOutLeftLegScaled;
 
         public OverviewForm()
         {
@@ -41,13 +41,13 @@ namespace RobotConnector
             portOutLeftArmScaled = new BufferedPortBottle();
             portOutLeftArmScaled.open("/MMCM/RobotConnector/left_arm/scaled:o");
             portOutRightArmScaled = new BufferedPortBottle();
-            portOutRightArmScaled.open("/MMCM/RobotConnector/right_arm/scaled:o");
-            //portOutRightLegScaled = new BufferedPortBottle();
-            //portOutRightLegScaled.open("/MMCM/RobotConnector/right_leg/scaled:o");
-            //portOutLeftLegScaled = new BufferedPortBottle();
-            //portOutLeftLegScaled.open("/MMCM/RobotConnector/left_leg/scaled:o");
-            //portOutTorsoScaled = new BufferedPortBottle();
-            //portOutTorsoScaled.open("/MMCM/RobotConnector/torso/scaled:o");
+		  portOutRightArmScaled.open("/MMCM/RobotConnector/right_arm/scaled:o");
+		  portOutRightLegScaled = new BufferedPortBottle();
+		  portOutRightLegScaled.open("/MMCM/RobotConnector/right_leg/scaled:o");
+		  portOutLeftLegScaled = new BufferedPortBottle();
+		  portOutLeftLegScaled.open("/MMCM/RobotConnector/left_leg/scaled:o");
+		  portOutTorsoScaled = new BufferedPortBottle();
+		  portOutTorsoScaled.open("/MMCM/RobotConnector/torso/scaled:o");
 
             mThread = new System.Threading.Thread(mainLoop);
             mThread.Start();
@@ -61,10 +61,10 @@ namespace RobotConnector
             {
                 robot.GetScaledPos("/left_arm",ref leftArm);
                 robot.GetScaledPos("/right_arm",ref rightArm);
-                robot.GetScaledPos("/head",ref head);
-                //robot.GetScaledPos("/torso", ref torso);
-                //robot.GetScaledPos("/left_leg", ref leftLeg);
-                //robot.GetScaledPos("/right_leg", ref rightLeg);
+			 robot.GetScaledPos("/head", ref head);
+			 robot.GetScaledPos("/torso", ref torso);
+			 robot.GetScaledPos("/left_leg", ref leftLeg);
+			 robot.GetScaledPos("/right_leg", ref rightLeg);
 
                 SendScaledOutput();
                 RefreshGUI(null, null);
