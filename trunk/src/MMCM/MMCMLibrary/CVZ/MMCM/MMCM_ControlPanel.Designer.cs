@@ -126,7 +126,7 @@
 		  this.panel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 		  this.panel1.Location = new System.Drawing.Point(12, 28);
 		  this.panel1.Name = "panel1";
-		  this.panel1.Size = new System.Drawing.Size(237, 373);
+		  this.panel1.Size = new System.Drawing.Size(237, 200);
 		  this.panel1.TabIndex = 6;
 		  this.panel1.WrapContents = false;
 		  // 
@@ -139,7 +139,7 @@
 		  this.tabControl1.Location = new System.Drawing.Point(255, 28);
 		  this.tabControl1.Name = "tabControl1";
 		  this.tabControl1.SelectedIndex = 0;
-		  this.tabControl1.Size = new System.Drawing.Size(319, 373);
+		  this.tabControl1.Size = new System.Drawing.Size(496, 373);
 		  this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
 		  this.tabControl1.TabIndex = 7;
 		  // 
@@ -149,7 +149,6 @@
 		  this.tabPageParameters.BackColor = System.Drawing.Color.LightGray;
 		  this.tabPageParameters.Controls.Add(this.checkBoxLogError);
 		  this.tabPageParameters.Controls.Add(this.groupBox1);
-		  this.tabPageParameters.Controls.Add(this.labelMapInfo);
 		  this.tabPageParameters.Controls.Add(this.gridModalitiesParameters);
 		  this.tabPageParameters.Controls.Add(this.buttonGetParameters);
 		  this.tabPageParameters.Controls.Add(this.buttonSetParameters);
@@ -157,7 +156,7 @@
 		  this.tabPageParameters.Location = new System.Drawing.Point(4, 22);
 		  this.tabPageParameters.Name = "tabPageParameters";
 		  this.tabPageParameters.Padding = new System.Windows.Forms.Padding(3);
-		  this.tabPageParameters.Size = new System.Drawing.Size(311, 347);
+		  this.tabPageParameters.Size = new System.Drawing.Size(488, 347);
 		  this.tabPageParameters.TabIndex = 0;
 		  this.tabPageParameters.Text = "Parameters";
 		  // 
@@ -166,7 +165,7 @@
 		  this.checkBoxLogError.AutoSize = true;
 		  this.checkBoxLogError.Checked = true;
 		  this.checkBoxLogError.CheckState = System.Windows.Forms.CheckState.Checked;
-		  this.checkBoxLogError.Location = new System.Drawing.Point(6, 216);
+		  this.checkBoxLogError.Location = new System.Drawing.Point(303, 85);
 		  this.checkBoxLogError.Name = "checkBoxLogError";
 		  this.checkBoxLogError.Size = new System.Drawing.Size(68, 17);
 		  this.checkBoxLogError.TabIndex = 12;
@@ -178,7 +177,7 @@
 		  // 
 		  this.groupBox1.Controls.Add(this.feedbakcTextBoxInfluence);
 		  this.groupBox1.Controls.Add(this.label1);
-		  this.groupBox1.Location = new System.Drawing.Point(166, 216);
+		  this.groupBox1.Location = new System.Drawing.Point(303, 6);
 		  this.groupBox1.Name = "groupBox1";
 		  this.groupBox1.Size = new System.Drawing.Size(105, 64);
 		  this.groupBox1.TabIndex = 10;
@@ -206,7 +205,7 @@
 		  // 
 		  this.labelMapInfo.AutoSize = true;
 		  this.labelMapInfo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-		  this.labelMapInfo.Location = new System.Drawing.Point(13, 240);
+		  this.labelMapInfo.Location = new System.Drawing.Point(12, 245);
 		  this.labelMapInfo.Name = "labelMapInfo";
 		  this.labelMapInfo.Size = new System.Drawing.Size(61, 15);
 		  this.labelMapInfo.TabIndex = 8;
@@ -305,7 +304,7 @@
 		  this.tabPageModalities.Location = new System.Drawing.Point(4, 22);
 		  this.tabPageModalities.Name = "tabPageModalities";
 		  this.tabPageModalities.Padding = new System.Windows.Forms.Padding(3);
-		  this.tabPageModalities.Size = new System.Drawing.Size(311, 347);
+		  this.tabPageModalities.Size = new System.Drawing.Size(488, 347);
 		  this.tabPageModalities.TabIndex = 1;
 		  this.tabPageModalities.Text = "Modalities";
 		  this.tabPageModalities.UseVisualStyleBackColor = true;
@@ -317,7 +316,7 @@
 		  this.flowLayoutPanelModalities.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 		  this.flowLayoutPanelModalities.Location = new System.Drawing.Point(3, 3);
 		  this.flowLayoutPanelModalities.Name = "flowLayoutPanelModalities";
-		  this.flowLayoutPanelModalities.Size = new System.Drawing.Size(305, 341);
+		  this.flowLayoutPanelModalities.Size = new System.Drawing.Size(482, 341);
 		  this.flowLayoutPanelModalities.TabIndex = 0;
 		  this.flowLayoutPanelModalities.WrapContents = false;
 		  // 
@@ -331,7 +330,7 @@
 		  this.tabPageErrors.Location = new System.Drawing.Point(4, 22);
 		  this.tabPageErrors.Name = "tabPageErrors";
 		  this.tabPageErrors.Padding = new System.Windows.Forms.Padding(3);
-		  this.tabPageErrors.Size = new System.Drawing.Size(311, 347);
+		  this.tabPageErrors.Size = new System.Drawing.Size(488, 347);
 		  this.tabPageErrors.TabIndex = 2;
 		  this.tabPageErrors.Text = "Prediction Errors";
 		  this.tabPageErrors.UseVisualStyleBackColor = true;
@@ -387,7 +386,7 @@
 		  series1.Legend = "Legend1";
 		  series1.Name = "Series1";
 		  this.chartPredictionError.Series.Add(series1);
-		  this.chartPredictionError.Size = new System.Drawing.Size(637, 466);
+		  this.chartPredictionError.Size = new System.Drawing.Size(297, 242);
 		  this.chartPredictionError.TabIndex = 0;
 		  this.chartPredictionError.Text = "chart1";
 		  title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
@@ -405,7 +404,7 @@
 		  this.tabPageElectrodes.Controls.Add(this.groupBox3);
 		  this.tabPageElectrodes.Location = new System.Drawing.Point(4, 22);
 		  this.tabPageElectrodes.Name = "tabPageElectrodes";
-		  this.tabPageElectrodes.Size = new System.Drawing.Size(311, 347);
+		  this.tabPageElectrodes.Size = new System.Drawing.Size(488, 347);
 		  this.tabPageElectrodes.TabIndex = 3;
 		  this.tabPageElectrodes.Text = "Electrodes";
 		  this.tabPageElectrodes.UseVisualStyleBackColor = true;
@@ -483,7 +482,7 @@
 		  series2.Legend = "Legend1";
 		  series2.Name = "Series1";
 		  this.chartElectrodes.Series.Add(series2);
-		  this.chartElectrodes.Size = new System.Drawing.Size(764, 365);
+		  this.chartElectrodes.Size = new System.Drawing.Size(470, 196);
 		  this.chartElectrodes.TabIndex = 5;
 		  this.chartElectrodes.Text = "chart1";
 		  // 
@@ -546,7 +545,7 @@
             this.toolStripButtonSaveMap});
 		  this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 		  this.toolStrip1.Name = "toolStrip1";
-		  this.toolStrip1.Size = new System.Drawing.Size(588, 25);
+		  this.toolStrip1.Size = new System.Drawing.Size(758, 25);
 		  this.toolStrip1.TabIndex = 8;
 		  this.toolStrip1.Text = "toolStrip1";
 		  // 
@@ -600,9 +599,10 @@
 		  // 
 		  this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 		  this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-		  this.ClientSize = new System.Drawing.Size(588, 424);
+		  this.ClientSize = new System.Drawing.Size(758, 424);
 		  this.Controls.Add(this.buttonRun);
 		  this.Controls.Add(this.buttonStop);
+		  this.Controls.Add(this.labelMapInfo);
 		  this.Controls.Add(this.toolStrip1);
 		  this.Controls.Add(this.tabControl1);
 		  this.Controls.Add(this.panel1);
