@@ -119,6 +119,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent />
-    <PostBuildEvent>copy $(TargetPath) %25EFAA_DIR%25\bin\Release\</PostBuildEvent>
+    <PostBuildEvent>copy $(TargetPath) $(SolutionDir)\..\bin</PostBuildEvent>
   </PropertyGroup>
 </Project>

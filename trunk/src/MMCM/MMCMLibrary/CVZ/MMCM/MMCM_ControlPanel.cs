@@ -108,6 +108,8 @@ namespace MMCMLibrary
                 p.Click += new EventHandler(p_Click);
                 panel1.Controls.Add(p);
             }
+
+		  checkBoxLogError_CheckedChanged(null, null);
         }
 
         private void GetParameters(object sender, EventArgs e)
