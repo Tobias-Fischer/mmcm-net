@@ -54,7 +54,7 @@ namespace MMCMLibrary
         /// </summary>
         public Dictionary<string, float[, , ,]> weights = new Dictionary<string,float[,,,]>();
 
-        private float learningRate = 0.0f;
+        private float learningRate = 0.1f;
         /// <summary>
         /// Obtain the learning rate property. A negative learning rate means no learning
         /// </summary>

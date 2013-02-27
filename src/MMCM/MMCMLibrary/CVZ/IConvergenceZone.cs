@@ -22,7 +22,8 @@ namespace MMCMLibrary
 
 	   [NonSerialized]
 	   private StreamWriter errorLog = null;
-
+	   [NonSerialized]
+	   private double starLoggingTime = -1.0;
 	   /// <summary>
 	   /// Start recording the error of each modality at each step.
 	   /// Calling this function successively without calling stop will raise an exception.
@@ -34,6 +35,7 @@ namespace MMCMLibrary
 		  {
 			 errorLog = File.CreateText("C:/logMMCM/" + fileName);
 			 errorLog.AutoFlush = true;
+			 errorLog.Write("time\t");
 			 foreach (KeyValuePair<string, IModality> k in modalities)
 			 {
 				errorLog.Write(k.Key + "\t");
@@ -58,6 +60,7 @@ namespace MMCMLibrary
 		  {
 			 errorLog.Close();
 			 errorLog = null;
+			 starLoggingTime = -1.0;
 		  }
 	   }
 
@@ -305,7 +308,16 @@ namespace MMCMLibrary
         /// Do a complete step (refresh real values, compute perceived and predict)
         /// The enactionFactor represent how much the CVZ perception are modified by its predictions.
         public void Step(float enactionFactor)
-        {
+	   {
+		  double currentTime;
+		  if (errorLog != null)
+		  {
+			 if (starLoggingTime == -1.0)
+				starLoggingTime = currentTime = Time.now();
+			 else
+				currentTime = Time.now();
+			 errorLog.Write(currentTime - starLoggingTime + "\t");
+		  }
             RefreshRealValues();
             ComputePerceivedValues(enactionFactor);
             ComputePredictedValues();
@@ -334,7 +346,16 @@ namespace MMCMLibrary
         /// Do a complete step (refresh real values, compute perceived and predict)
         /// The enactionFactor[i] represent for each modality how much the CVZ perception is modified by its predictions.
         public void Step(float[] enactionFactor)
-        {
+	   {
+		  double currentTime;
+		  if (errorLog != null)
+		  {
+			 if (starLoggingTime == -1.0)
+				starLoggingTime = currentTime = Time.now();
+			 else
+				currentTime = Time.now();
+			 errorLog.Write(currentTime - starLoggingTime + "\t");
+		  }
             RefreshRealValues();
             ComputePerceivedValues(enactionFactor);
             ComputePredictedValues();
@@ -369,6 +390,15 @@ namespace MMCMLibrary
         /// the error of each modality.
         public void Step()
         {
+		  double currentTime;
+		  if (errorLog != null)
+		  {
+			 if (starLoggingTime == -1.0)
+				starLoggingTime = currentTime = Time.now();
+			 else
+				currentTime = Time.now();
+			 errorLog.Write(currentTime - starLoggingTime + "\t");
+		  }
             RefreshRealValues();
             ComputePerceivedValues();
             ComputePredictedValues();

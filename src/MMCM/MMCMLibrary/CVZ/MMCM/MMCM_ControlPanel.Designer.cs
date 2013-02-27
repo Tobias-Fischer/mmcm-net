@@ -41,7 +41,7 @@
 		  this.panel1 = new System.Windows.Forms.FlowLayoutPanel();
 		  this.tabControl1 = new System.Windows.Forms.TabControl();
 		  this.tabPageParameters = new System.Windows.Forms.TabPage();
-		  this.buttonGeneratePlot = new System.Windows.Forms.Button();
+		  this.checkBoxLogError = new System.Windows.Forms.CheckBox();
 		  this.groupBox1 = new System.Windows.Forms.GroupBox();
 		  this.feedbakcTextBoxInfluence = new System.Windows.Forms.TextBox();
 		  this.label1 = new System.Windows.Forms.Label();
@@ -84,7 +84,6 @@
 		  this.buttonStop = new System.Windows.Forms.Button();
 		  this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 		  this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-		  this.checkBoxLogError = new System.Windows.Forms.CheckBox();
 		  this.tabControl1.SuspendLayout();
 		  this.tabPageParameters.SuspendLayout();
 		  this.groupBox1.SuspendLayout();
@@ -113,7 +112,7 @@
 		  // labelSteps
 		  // 
 		  this.labelSteps.AutoSize = true;
-		  this.labelSteps.Location = new System.Drawing.Point(12, 520);
+		  this.labelSteps.Location = new System.Drawing.Point(12, 404);
 		  this.labelSteps.Name = "labelSteps";
 		  this.labelSteps.Size = new System.Drawing.Size(67, 13);
 		  this.labelSteps.TabIndex = 5;
@@ -127,7 +126,7 @@
 		  this.panel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 		  this.panel1.Location = new System.Drawing.Point(12, 28);
 		  this.panel1.Name = "panel1";
-		  this.panel1.Size = new System.Drawing.Size(237, 489);
+		  this.panel1.Size = new System.Drawing.Size(237, 373);
 		  this.panel1.TabIndex = 6;
 		  this.panel1.WrapContents = false;
 		  // 
@@ -140,7 +139,7 @@
 		  this.tabControl1.Location = new System.Drawing.Point(255, 28);
 		  this.tabControl1.Name = "tabControl1";
 		  this.tabControl1.SelectedIndex = 0;
-		  this.tabControl1.Size = new System.Drawing.Size(784, 505);
+		  this.tabControl1.Size = new System.Drawing.Size(319, 373);
 		  this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
 		  this.tabControl1.TabIndex = 7;
 		  // 
@@ -149,7 +148,6 @@
 		  this.tabPageParameters.AutoScroll = true;
 		  this.tabPageParameters.BackColor = System.Drawing.Color.LightGray;
 		  this.tabPageParameters.Controls.Add(this.checkBoxLogError);
-		  this.tabPageParameters.Controls.Add(this.buttonGeneratePlot);
 		  this.tabPageParameters.Controls.Add(this.groupBox1);
 		  this.tabPageParameters.Controls.Add(this.labelMapInfo);
 		  this.tabPageParameters.Controls.Add(this.gridModalitiesParameters);
@@ -159,25 +157,28 @@
 		  this.tabPageParameters.Location = new System.Drawing.Point(4, 22);
 		  this.tabPageParameters.Name = "tabPageParameters";
 		  this.tabPageParameters.Padding = new System.Windows.Forms.Padding(3);
-		  this.tabPageParameters.Size = new System.Drawing.Size(776, 479);
+		  this.tabPageParameters.Size = new System.Drawing.Size(311, 347);
 		  this.tabPageParameters.TabIndex = 0;
 		  this.tabPageParameters.Text = "Parameters";
 		  // 
-		  // buttonGeneratePlot
+		  // checkBoxLogError
 		  // 
-		  this.buttonGeneratePlot.Location = new System.Drawing.Point(352, 328);
-		  this.buttonGeneratePlot.Name = "buttonGeneratePlot";
-		  this.buttonGeneratePlot.Size = new System.Drawing.Size(95, 23);
-		  this.buttonGeneratePlot.TabIndex = 11;
-		  this.buttonGeneratePlot.Text = "Generate Plot";
-		  this.buttonGeneratePlot.UseVisualStyleBackColor = true;
-		  this.buttonGeneratePlot.Click += new System.EventHandler(this.buttonGeneratePlot_Click);
+		  this.checkBoxLogError.AutoSize = true;
+		  this.checkBoxLogError.Checked = true;
+		  this.checkBoxLogError.CheckState = System.Windows.Forms.CheckState.Checked;
+		  this.checkBoxLogError.Location = new System.Drawing.Point(6, 216);
+		  this.checkBoxLogError.Name = "checkBoxLogError";
+		  this.checkBoxLogError.Size = new System.Drawing.Size(68, 17);
+		  this.checkBoxLogError.TabIndex = 12;
+		  this.checkBoxLogError.Text = "Log error";
+		  this.checkBoxLogError.UseVisualStyleBackColor = true;
+		  this.checkBoxLogError.CheckedChanged += new System.EventHandler(this.checkBoxLogError_CheckedChanged);
 		  // 
 		  // groupBox1
 		  // 
 		  this.groupBox1.Controls.Add(this.feedbakcTextBoxInfluence);
 		  this.groupBox1.Controls.Add(this.label1);
-		  this.groupBox1.Location = new System.Drawing.Point(355, 93);
+		  this.groupBox1.Location = new System.Drawing.Point(166, 216);
 		  this.groupBox1.Name = "groupBox1";
 		  this.groupBox1.Size = new System.Drawing.Size(105, 64);
 		  this.groupBox1.TabIndex = 10;
@@ -205,7 +206,7 @@
 		  // 
 		  this.labelMapInfo.AutoSize = true;
 		  this.labelMapInfo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-		  this.labelMapInfo.Location = new System.Drawing.Point(355, 160);
+		  this.labelMapInfo.Location = new System.Drawing.Point(13, 240);
 		  this.labelMapInfo.Name = "labelMapInfo";
 		  this.labelMapInfo.Size = new System.Drawing.Size(61, 15);
 		  this.labelMapInfo.TabIndex = 8;
@@ -222,7 +223,7 @@
             this.Column_Influence});
 		  this.gridModalitiesParameters.Location = new System.Drawing.Point(3, 61);
 		  this.gridModalitiesParameters.Name = "gridModalitiesParameters";
-		  this.gridModalitiesParameters.Size = new System.Drawing.Size(346, 290);
+		  this.gridModalitiesParameters.Size = new System.Drawing.Size(268, 149);
 		  this.gridModalitiesParameters.TabIndex = 4;
 		  // 
 		  // Columun_ModalityName
@@ -230,20 +231,23 @@
 		  this.Columun_ModalityName.HeaderText = "Modality";
 		  this.Columun_ModalityName.Name = "Columun_ModalityName";
 		  this.Columun_ModalityName.ReadOnly = true;
+		  this.Columun_ModalityName.Width = 75;
 		  // 
 		  // Column_EnactionFactor
 		  // 
 		  this.Column_EnactionFactor.HeaderText = "Enaction Factor";
 		  this.Column_EnactionFactor.Name = "Column_EnactionFactor";
+		  this.Column_EnactionFactor.Width = 75;
 		  // 
 		  // Column_Influence
 		  // 
 		  this.Column_Influence.HeaderText = "Influence";
 		  this.Column_Influence.Name = "Column_Influence";
+		  this.Column_Influence.Width = 75;
 		  // 
 		  // buttonGetParameters
 		  // 
-		  this.buttonGetParameters.Location = new System.Drawing.Point(352, 7);
+		  this.buttonGetParameters.Location = new System.Drawing.Point(202, 6);
 		  this.buttonGetParameters.Name = "buttonGetParameters";
 		  this.buttonGetParameters.Size = new System.Drawing.Size(95, 23);
 		  this.buttonGetParameters.TabIndex = 7;
@@ -253,7 +257,7 @@
 		  // 
 		  // buttonSetParameters
 		  // 
-		  this.buttonSetParameters.Location = new System.Drawing.Point(352, 36);
+		  this.buttonSetParameters.Location = new System.Drawing.Point(202, 35);
 		  this.buttonSetParameters.Name = "buttonSetParameters";
 		  this.buttonSetParameters.Size = new System.Drawing.Size(95, 23);
 		  this.buttonSetParameters.TabIndex = 6;
@@ -272,24 +276,27 @@
             this.Column_Period});
 		  this.gridMapParameters.Location = new System.Drawing.Point(3, 3);
 		  this.gridMapParameters.Name = "gridMapParameters";
-		  this.gridMapParameters.Size = new System.Drawing.Size(346, 62);
+		  this.gridMapParameters.Size = new System.Drawing.Size(193, 62);
 		  this.gridMapParameters.TabIndex = 5;
 		  // 
 		  // Column_LearningRate
 		  // 
 		  this.Column_LearningRate.HeaderText = "Learning Rate";
 		  this.Column_LearningRate.Name = "Column_LearningRate";
+		  this.Column_LearningRate.Width = 50;
 		  // 
 		  // Column_Sigma
 		  // 
 		  this.Column_Sigma.HeaderText = "Sigma";
 		  this.Column_Sigma.Name = "Column_Sigma";
+		  this.Column_Sigma.Width = 50;
 		  // 
 		  // Column_Period
 		  // 
 		  this.Column_Period.HeaderText = "Period";
 		  this.Column_Period.Name = "Column_Period";
 		  this.Column_Period.ReadOnly = true;
+		  this.Column_Period.Width = 50;
 		  // 
 		  // tabPageModalities
 		  // 
@@ -298,7 +305,7 @@
 		  this.tabPageModalities.Location = new System.Drawing.Point(4, 22);
 		  this.tabPageModalities.Name = "tabPageModalities";
 		  this.tabPageModalities.Padding = new System.Windows.Forms.Padding(3);
-		  this.tabPageModalities.Size = new System.Drawing.Size(776, 479);
+		  this.tabPageModalities.Size = new System.Drawing.Size(311, 347);
 		  this.tabPageModalities.TabIndex = 1;
 		  this.tabPageModalities.Text = "Modalities";
 		  this.tabPageModalities.UseVisualStyleBackColor = true;
@@ -310,7 +317,7 @@
 		  this.flowLayoutPanelModalities.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 		  this.flowLayoutPanelModalities.Location = new System.Drawing.Point(3, 3);
 		  this.flowLayoutPanelModalities.Name = "flowLayoutPanelModalities";
-		  this.flowLayoutPanelModalities.Size = new System.Drawing.Size(770, 473);
+		  this.flowLayoutPanelModalities.Size = new System.Drawing.Size(305, 341);
 		  this.flowLayoutPanelModalities.TabIndex = 0;
 		  this.flowLayoutPanelModalities.WrapContents = false;
 		  // 
@@ -324,7 +331,7 @@
 		  this.tabPageErrors.Location = new System.Drawing.Point(4, 22);
 		  this.tabPageErrors.Name = "tabPageErrors";
 		  this.tabPageErrors.Padding = new System.Windows.Forms.Padding(3);
-		  this.tabPageErrors.Size = new System.Drawing.Size(776, 479);
+		  this.tabPageErrors.Size = new System.Drawing.Size(311, 347);
 		  this.tabPageErrors.TabIndex = 2;
 		  this.tabPageErrors.Text = "Prediction Errors";
 		  this.tabPageErrors.UseVisualStyleBackColor = true;
@@ -398,7 +405,7 @@
 		  this.tabPageElectrodes.Controls.Add(this.groupBox3);
 		  this.tabPageElectrodes.Location = new System.Drawing.Point(4, 22);
 		  this.tabPageElectrodes.Name = "tabPageElectrodes";
-		  this.tabPageElectrodes.Size = new System.Drawing.Size(776, 479);
+		  this.tabPageElectrodes.Size = new System.Drawing.Size(311, 347);
 		  this.tabPageElectrodes.TabIndex = 3;
 		  this.tabPageElectrodes.Text = "Electrodes";
 		  this.tabPageElectrodes.UseVisualStyleBackColor = true;
@@ -539,7 +546,7 @@
             this.toolStripButtonSaveMap});
 		  this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 		  this.toolStrip1.Name = "toolStrip1";
-		  this.toolStrip1.Size = new System.Drawing.Size(1039, 25);
+		  this.toolStrip1.Size = new System.Drawing.Size(588, 25);
 		  this.toolStrip1.TabIndex = 8;
 		  this.toolStrip1.Text = "toolStrip1";
 		  // 
@@ -589,22 +596,11 @@
 		  // 
 		  this.openFileDialog1.FileName = "openFileDialog1";
 		  // 
-		  // checkBoxLogError
-		  // 
-		  this.checkBoxLogError.AutoSize = true;
-		  this.checkBoxLogError.Location = new System.Drawing.Point(355, 65);
-		  this.checkBoxLogError.Name = "checkBoxLogError";
-		  this.checkBoxLogError.Size = new System.Drawing.Size(68, 17);
-		  this.checkBoxLogError.TabIndex = 12;
-		  this.checkBoxLogError.Text = "Log error";
-		  this.checkBoxLogError.UseVisualStyleBackColor = true;
-		  this.checkBoxLogError.CheckedChanged += new System.EventHandler(this.checkBoxLogError_CheckedChanged);
-		  // 
 		  // MMCM_ControlPanel
 		  // 
 		  this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 		  this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-		  this.ClientSize = new System.Drawing.Size(1039, 537);
+		  this.ClientSize = new System.Drawing.Size(588, 424);
 		  this.Controls.Add(this.buttonRun);
 		  this.Controls.Add(this.buttonStop);
 		  this.Controls.Add(this.toolStrip1);
@@ -646,16 +642,10 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageParameters;
         private System.Windows.Forms.Label labelMapInfo;
-        private System.Windows.Forms.DataGridView gridModalitiesParameters;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Columun_ModalityName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_EnactionFactor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_Influence;
+	   private System.Windows.Forms.DataGridView gridModalitiesParameters;
         private System.Windows.Forms.Button buttonGetParameters;
         private System.Windows.Forms.Button buttonSetParameters;
-        private System.Windows.Forms.DataGridView gridMapParameters;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_LearningRate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_Sigma;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_Period;
+	   private System.Windows.Forms.DataGridView gridMapParameters;
         private System.Windows.Forms.TabPage tabPageModalities;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelModalities;
         private System.Windows.Forms.ToolStrip toolStrip1;
@@ -667,8 +657,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox feedbakcTextBoxInfluence;
-        private System.Windows.Forms.Button buttonGeneratePlot;
+	   private System.Windows.Forms.TextBox feedbakcTextBoxInfluence;
         private System.Windows.Forms.TabPage tabPageErrors;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartPredictionError;
         private System.Windows.Forms.CheckedListBox chartCheckListModalities;
@@ -689,6 +678,12 @@
         private System.Windows.Forms.CheckBox electrodeCheckBoxPlot;
         private System.Windows.Forms.Button electrodesButtonSavePlot;
 	   private System.Windows.Forms.CheckBox checkBoxLogError;
+	   private System.Windows.Forms.DataGridViewTextBoxColumn Columun_ModalityName;
+	   private System.Windows.Forms.DataGridViewTextBoxColumn Column_EnactionFactor;
+	   private System.Windows.Forms.DataGridViewTextBoxColumn Column_Influence;
+	   private System.Windows.Forms.DataGridViewTextBoxColumn Column_LearningRate;
+	   private System.Windows.Forms.DataGridViewTextBoxColumn Column_Sigma;
+	   private System.Windows.Forms.DataGridViewTextBoxColumn Column_Period;
 
     }
 }
