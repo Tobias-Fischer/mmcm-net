@@ -244,7 +244,7 @@ namespace MMCMLibrary
                 m_map.Dispose();
 
             //todo Use a form to create the new map
-            CVZ_MMCM newMap = new CVZ_MMCM("newMap", 10, 10, 3);
+            CVZ_MMCM newMap = new CVZ_MMCM("newMap", 10, 10, 3,false);
             newMap.AddModality(new RandomModality("newMap","defaultRandomModality",10),1.0f);
             Initialise(newMap);
         }

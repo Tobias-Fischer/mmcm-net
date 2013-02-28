@@ -98,7 +98,7 @@ namespace MMCMLibrary
         /// <param name="name"></param>
         /// <param name="_height"></param>
         /// <param name="_width"></param>
-        public CVZ_MMCM(string name, int _width,int _height , int _layers)
+        public CVZ_MMCM(string name, int _width,int _height , int _layers, bool isHierarchicallySynchrone)
             : base(name)
         {
             height = _height;
@@ -110,7 +110,7 @@ namespace MMCMLibrary
 
             sigma = (float)((1 / 4.0) * (height + width) / 2.0);
 
-            this.CreateHierarchicalModality(3, 0.0f);
+		  this.CreateHierarchicalModality(3, 0.0f, isHierarchicallySynchrone);
         }
 
         protected virtual void RebuildWeightsMatrix()
@@ -439,10 +439,10 @@ namespace MMCMLibrary
             //Get the values from info and assign them to the appropriate properties
             height = (int)info.GetValue("Height", typeof(int));
             width = (int)info.GetValue("Width", typeof(int));
-            layers = (int)info.GetValue("Layers", typeof(int));
+		  layers = (int)info.GetValue("Layers", typeof(int));
             weights = new Dictionary<string, float[, , ,]>();
             mapActivity = new float[width, height, layers];
-            CreateHierarchicalModality(3, 0.0f);
+		  CreateHierarchicalModality(3, 0.0f, false);//potential bug with herarchicalSYnchro
             int modalitiesCount = (int)info.GetValue("ModalitiesCount", typeof(int));
             for (int i = 0; i < modalitiesCount; i++)
             {

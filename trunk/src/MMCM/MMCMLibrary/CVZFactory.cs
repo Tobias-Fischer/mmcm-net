@@ -24,22 +24,26 @@ namespace MMCMLibrary
         {
             IConvergenceZone cvz = null;
             string mapType = rf.check("mapType", new Value("MMCM")).asString().c_str();
-            string mapName = rf.check("mapName", new Value("defaultMap")).asString().c_str();
+		  string mapName = rf.check("mapName", new Value("defaultMap")).asString().c_str();
+		  bool hSynch = rf.check("hsync");
             int w = rf.check("width", new Value(10)).asInt();
             int h = rf.check("height", new Value(10)).asInt();
             int l = rf.check("layers", new Value(4)).asInt();
             Console.WriteLine("Map " + mapName + " (" + mapType + ")");
-            Console.WriteLine("Shape " + l + "x(" + w + "x" + h + ")");
+		  Console.WriteLine("Shape " + l + "x(" + w + "x" + h + ")");
+		  Console.WriteLine("HSynch= " + hSynch);
 
             switch (mapType)
             {
                 case "MMCM":
                     {
-                        cvz = new CVZ_MMCM(mapName, h, w, l);
+				    cvz = new CVZ_MMCM(mapName, h, w, l, hSynch);
                         float learningRate = (float)rf.check("learningRate", new Value(0.07f)).asDouble();
                         float sigma = (float)rf.check("sigma", new Value((float)((1 / 4.0) * (w + h) / 2.0))).asDouble();
                         Console.WriteLine("Learning Rate: " + learningRate);
                         Console.WriteLine("Sigma: " + sigma);
+				    (cvz as CVZ_MMCM).Sigma = sigma;
+				    (cvz as CVZ_MMCM).LearningRate = learningRate;
                         break;
                     }
 

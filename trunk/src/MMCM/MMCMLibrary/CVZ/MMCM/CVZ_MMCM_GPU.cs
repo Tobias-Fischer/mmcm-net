@@ -48,7 +48,7 @@ namespace MMCMLibrary
         /// <param name="_height"></param>
         /// <param name="_width"></param>
         public CVZ_MMCM_GPU(string name, int _height, int _width, int _layers, OptimizationType _optimizationType = OptimizationType.auto )
-            : base(name, _height,_width,_layers)
+            : base(name, _height,_width,_layers,false)
         {
             desiredOptimizationType = _optimizationType;
             RebuildWeightsMatrix();
