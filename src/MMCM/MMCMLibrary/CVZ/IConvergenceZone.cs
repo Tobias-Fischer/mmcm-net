@@ -70,7 +70,7 @@ namespace MMCMLibrary
         /// </summary>
         public Dictionary<string, IModality> modalities;
         public Dictionary<string, float> modalitiesInfluence;
-        public YarpModalityVector hierarchicalModality;
+	   public YarpModalityVector hierarchicalModality;
         public bool HierarchicalModalitySet { get { return hierarchicalModality != null; } }
         public float feedbackInfluence;
         public int HierarchicalModalitySize
@@ -111,7 +111,7 @@ namespace MMCMLibrary
         /// </summary>
         /// <param name="modalityName"></param>
         /// <param name="size"></param>
-        public void CreateHierarchicalModality(int size, float influence)
+        public void CreateHierarchicalModality(int size, float influence, bool isSynchrone)
         {
             if (hierarchicalModalityDesiredSize() != size)
                 throw new Exception("Incompatible size with this model. It should be " + hierarchicalModalityDesiredSize());
@@ -123,7 +123,7 @@ namespace MMCMLibrary
             }
 
             feedbackInfluence = influence;
-            hierarchicalModality = new YarpModalityVector(name, "hierarchical", size);
+		  hierarchicalModality = new YarpModalityVector(name, "hierarchical", size, null, null, isSynchrone);
 
 		  if (errorLog != null)
 		  {
