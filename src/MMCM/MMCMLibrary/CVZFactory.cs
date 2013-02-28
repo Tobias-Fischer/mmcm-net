@@ -75,7 +75,7 @@ namespace MMCMLibrary
                 string type = modalityGroup.check("type", new Value("random")).asString().c_str();
                 float influence = (float)modalityGroup.check("influence", new Value(1.0)).asDouble();
                 Console.WriteLine("Modality: " + name + " (" + type + ")");
-                Console.WriteLine("Influence: " + influence);
+			 Console.WriteLine("Influence: " + influence);
                 switch (type)
                 {
                     case "random":
@@ -90,6 +90,8 @@ namespace MMCMLibrary
                             int size = modalityGroup.check("size", new Value(1)).asInt();
                             float[] minBounds = null;
                             float[] maxBounds = null;
+					   bool isBlocking = modalityGroup.check("isBlocking");
+					   Console.WriteLine("isBlocking: " + isBlocking);
                             if (modalityGroup.check("minBounds"))
                             {
                                 minBounds = new float[size];
@@ -105,7 +107,7 @@ namespace MMCMLibrary
                                 for (int c = 0; c < maxBot.size(); c++)
                                     maxBounds[c] = (float)maxBot.get(c).asDouble();
                             }
-                            mod = new YarpModalityVector(mapName, name, size, minBounds, maxBounds);
+					   mod = new YarpModalityVector(mapName, name, size, minBounds, maxBounds, isBlocking);
 
                             if (modalityGroup.check("autoconnect"))
                             {
@@ -120,8 +122,10 @@ namespace MMCMLibrary
                         }
 
                     case "yarpString":
-                        {
-                            mod = new YarpModalityString(mapName, name);
+				    {
+					   bool isBlocking = modalityGroup.check("isBlocking");
+					   mod = new YarpModalityString(mapName, name, isBlocking);
+					   Console.WriteLine("isBlocking: " + isBlocking);
 
                             if (modalityGroup.check("autoconnect"))
                             {
@@ -132,10 +136,12 @@ namespace MMCMLibrary
                         }
 
                     case "yarpImageRgb":
-                        {
+				    {
+					   bool isBlocking = modalityGroup.check("isBlocking");
+					   Console.WriteLine("isBlocking: " + isBlocking);
                             int wImg = modalityGroup.check("width", new Value(32)).asInt();
                             int hImg = modalityGroup.check("height", new Value(32)).asInt();
-                            mod = new YarpModalityImageRgb(mapName, name, wImg, hImg);
+					   mod = new YarpModalityImageRgb(mapName, name, wImg, hImg, isBlocking);
                             Console.WriteLine("Resolution: " + wImg + "x" + hImg);
                             if (modalityGroup.check("autoconnect"))
                             {
@@ -146,11 +152,13 @@ namespace MMCMLibrary
                         }
 
                     case "yarpImageFloat":
-                        {
+				    {
+					   bool isBlocking = modalityGroup.check("isBlocking");
+					   Console.WriteLine("isBlocking: " + isBlocking);
                             int wImg = modalityGroup.check("width", new Value(32)).asInt();
                             int hImg = modalityGroup.check("height", new Value(32)).asInt();
                             int padding = modalityGroup.check("padding", new Value(0)).asInt();
-                            mod = new YarpModalityImageFloat(mapName, name, wImg, hImg, padding);
+					   mod = new YarpModalityImageFloat(mapName, name, wImg, hImg, padding, isBlocking);
                             Console.WriteLine("Resolution: " + wImg + "x" + hImg);
                             if (modalityGroup.check("autoconnect"))
                             {
@@ -161,8 +169,10 @@ namespace MMCMLibrary
                         }
 				case "yarpSound":
 				    {
+					   bool isBlocking = modalityGroup.check("isBlocking");
+					   Console.WriteLine("isBlocking: " + isBlocking);
 					   int size = modalityGroup.check("size", new Value(512)).asInt();
-					   mod = new YarpModalitySound(mapName, name, size);
+					   mod = new YarpModalitySound(mapName, name, size, isBlocking);
 					   Console.WriteLine("Buffer: " + size);
 					   if (modalityGroup.check("autoconnect"))
 					   {

@@ -17,7 +17,7 @@ namespace MMCMLibrary.Modalities
     {
         private int w, h, padding;
         private string mapName;
-
+	   private bool isBlockingRead;
 
         [NonSerialized] private BufferedPortImageFloat portReal;
         [NonSerialized] private BufferedPortImageFloat portPredicted;
@@ -31,13 +31,14 @@ namespace MMCMLibrary.Modalities
         /// <param name="name">Name of the modality. It will be used to open the corresponding
         /// yarp port</param>
         /// <param name="size">Number of components of this modality</param>
-        public YarpModalityImageFloat(string _mapName, string _name, int _w, int _h, int _padding = 0):
+        public YarpModalityImageFloat(string _mapName, string _name, int _w, int _h, int _padding = 0, bool isBlocking = false):
             base(_name, _w * _h )
         {
             w = _w;
             h = _h;
             padding = _padding;
-            mapName = _mapName; 
+            mapName = _mapName;
+		  isBlockingRead = isBlocking;
             Initialise();
         }
 
@@ -70,7 +71,7 @@ namespace MMCMLibrary.Modalities
         /// </summary>
         public override void ReadRealValue()
         {
-            ImageFloat img = portReal.read(false);
+            ImageFloat img = portReal.read(isBlockingRead);
 
             if (img != null )
             {
@@ -175,6 +176,7 @@ namespace MMCMLibrary.Modalities
             w = (int)info.GetValue("w", typeof(int));
             h = (int)info.GetValue("h", typeof(int));
             padding = (int)info.GetValue("padding", typeof(int));
+		  isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -183,7 +185,8 @@ namespace MMCMLibrary.Modalities
             info.AddValue("mapName", mapName);
             info.AddValue("w", w);
             info.AddValue("h", h);
-            info.AddValue("padding", padding);
+		  info.AddValue("padding", padding);
+		  info.AddValue("isBlocking", isBlockingRead);
         }
     }
 }

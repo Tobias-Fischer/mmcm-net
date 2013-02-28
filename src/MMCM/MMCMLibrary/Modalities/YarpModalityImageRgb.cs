@@ -16,6 +16,7 @@ namespace MMCMLibrary.Modalities
     {
         private int w, h;
         private string mapName;
+	   private bool isBlockingRead;
 
         [NonSerialized]
         private BufferedPortImageRgb portReal;
@@ -33,12 +34,13 @@ namespace MMCMLibrary.Modalities
         /// <param name="name">Name of the modality. It will be used to open the corresponding
         /// yarp port</param>
         /// <param name="size">Number of components of this modality</param>
-        public YarpModalityImageRgb(string _mapName, string _name, int _w, int _h):
+        public YarpModalityImageRgb(string _mapName, string _name, int _w, int _h, bool isBlocking = false):
             base(_name, _w * _h * 3)
         {
             w = _w;
             h = _h;
-            mapName = _mapName;
+		  mapName = _mapName;
+		  isBlockingRead = isBlocking;
             Initialise();
         }
 
@@ -70,7 +72,7 @@ namespace MMCMLibrary.Modalities
         /// </summary>
         public override void ReadRealValue()
         {
-            ImageRgb img = portReal.read(false);
+            ImageRgb img = portReal.read(isBlockingRead);
 
             if (img != null )
             {
@@ -163,7 +165,8 @@ namespace MMCMLibrary.Modalities
         {
             mapName = (string)info.GetValue("mapName", typeof(string));
             w = (int)info.GetValue("w", typeof(int));
-            h = (int)info.GetValue("h", typeof(int));
+		  h = (int)info.GetValue("h", typeof(int));
+		  isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -171,7 +174,8 @@ namespace MMCMLibrary.Modalities
             base.GetObjectData(info, ctxt);
             info.AddValue("mapName", mapName);
             info.AddValue("w", w);
-            info.AddValue("h", h);
+		  info.AddValue("h", h);
+		  info.AddValue("isBlocking", isBlockingRead);
         }
     }
 }
