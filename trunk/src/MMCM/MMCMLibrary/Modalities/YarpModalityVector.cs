@@ -15,7 +15,8 @@ namespace MMCMLibrary.Modalities
     public class YarpModalityVector:IModality
     {
         string mapName;
-        private float[] minBounds, maxBounds;
+	   private float[] minBounds, maxBounds;
+	   private bool isBlockingRead;
 
         //Vectors defining the boundaries of the input spaces. Used to scale it in [0,1]
 
@@ -52,11 +53,12 @@ namespace MMCMLibrary.Modalities
         /// <param name="name">Name of the modality. It will be used to open the corresponding
         /// yarp port</param>
         /// <param name="size">Number of components of this modality</param>
-        public YarpModalityVector(string _mapName, string _name, int _size, float[] minBounds = null, float[] maxBounds = null):
+        public YarpModalityVector(string _mapName, string _name, int _size, float[] minBounds = null, float[] maxBounds = null, bool isBlocking = false):
             base(_name, _size)
         {
 
-            mapName = _mapName;
+		  mapName = _mapName;
+		  isBlockingRead = isBlocking;
             if (minBounds != null && maxBounds != null)
             {
                 this.minBounds = minBounds;
@@ -108,7 +110,7 @@ namespace MMCMLibrary.Modalities
                 forcedValue = null;
                 return;
             }
-            Bottle b = portReal.read(false);
+		  Bottle b = portReal.read(isBlockingRead);
 
             if (b != null )
             {
@@ -168,7 +170,8 @@ namespace MMCMLibrary.Modalities
         {
             mapName = (string)info.GetValue("mapName", typeof(string));
             minBounds = (float[])info.GetValue("minBounds", typeof(float[]));
-            minBounds = (float[])info.GetValue("maxBounds", typeof(float[]));
+		  minBounds = (float[])info.GetValue("maxBounds", typeof(float[]));
+		  isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -176,7 +179,8 @@ namespace MMCMLibrary.Modalities
             base.GetObjectData(info, ctxt);
             info.AddValue("mapName", mapName);
             info.AddValue("minBounds", minBounds);
-            info.AddValue("maxBounds", maxBounds);
+		  info.AddValue("maxBounds", maxBounds);
+		  info.AddValue("isBlocking", isBlockingRead);
         }
     }
 }

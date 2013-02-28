@@ -15,7 +15,8 @@ namespace MMCMLibrary.Modalities
     /// </summary>
     public class YarpModalityString:IModality
     {
-        string mapName;
+	   string mapName;
+	   private bool isBlockingRead;
 
         [NonSerialized]
         private float[] forcedValue = null;
@@ -49,11 +50,12 @@ namespace MMCMLibrary.Modalities
         /// </summary>
         /// <param name="name">Name of the modality. It will be used to open the corresponding
         /// yarp port</param>
-        public YarpModalityString(string _mapName, string _name):
+        public YarpModalityString(string _mapName, string _name, bool isBlocking = false):
             base(_name, 4)
         {
 
-            mapName = _mapName;
+		  mapName = _mapName;
+		  isBlockingRead = isBlocking;
             Initialise();
         }
 
@@ -90,7 +92,7 @@ namespace MMCMLibrary.Modalities
                 forcedValue = null;
                 return;
             }
-            Bottle b = portReal.read(false);
+		  Bottle b = portReal.read(isBlockingRead);
 
             if (b != null)
             {
@@ -193,13 +195,15 @@ namespace MMCMLibrary.Modalities
         public YarpModalityString(SerializationInfo info, StreamingContext ctxt)
             :base(info,ctxt)
         {
-            mapName = (string)info.GetValue("mapName", typeof(string));
+		  mapName = (string)info.GetValue("mapName", typeof(string));
+		  isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             base.GetObjectData(info, ctxt);
-            info.AddValue("mapName", mapName);
+		  info.AddValue("mapName", mapName);
+		  info.AddValue("isBlocking", isBlockingRead);
         }
         #endregion
     }

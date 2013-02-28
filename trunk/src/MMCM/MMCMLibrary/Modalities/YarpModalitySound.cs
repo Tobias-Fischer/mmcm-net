@@ -16,8 +16,8 @@ namespace MMCMLibrary.Modalities
     public class YarpModalitySound:IModality
     {
         private int bufferSize;
-        private string mapName;
-
+	   private string mapName;
+	   private bool isBlockingRead;
 
         [NonSerialized] private BufferedPortSound portReal;
         [NonSerialized] private BufferedPortSound portPredicted;
@@ -31,10 +31,11 @@ namespace MMCMLibrary.Modalities
         /// <param name="name">Name of the modality. It will be used to open the corresponding
         /// yarp port</param>
         /// <param name="size">Number of components of this modality</param>
-        public YarpModalitySound(string _mapName, string _name, int _bufferSize):
+        public YarpModalitySound(string _mapName, string _name, int _bufferSize, bool isBlocking = false):
             base(_name, _bufferSize )
         {
-            mapName = _mapName; 
+		  mapName = _mapName;
+		  isBlockingRead = isBlocking; 
             Initialise();
         }
 
@@ -67,7 +68,7 @@ namespace MMCMLibrary.Modalities
         /// </summary>
         public override void ReadRealValue()
         {
-            Sound s = portReal.read(false);
+		  Sound s = portReal.read(isBlockingRead);
 
             if (s != null )
             {
@@ -123,12 +124,14 @@ namespace MMCMLibrary.Modalities
             :base(info,ctxt)
         {
 		  mapName = (string)info.GetValue("mapName", typeof(string));
+		  isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             base.GetObjectData(info, ctxt);
-            info.AddValue("mapName", mapName);
+		  info.AddValue("mapName", mapName);
+		  info.AddValue("isBlocking", isBlockingRead);
         }
     }
 }
