@@ -12,11 +12,12 @@ namespace MMCMLibrary.Modalities
     /// <summary>
     /// A simple class that wrap a BufferedPortBottle so it is used for float[]
     /// </summary>
-    public class YarpModalityImageRgb:IModality
+    public class YarpModalityImageRgb : IModality
     {
+        private string autoconnect_source;
         private int w, h;
         private string mapName;
-	   private bool isBlockingRead;
+        private bool isBlockingRead;
 
         [NonSerialized]
         private BufferedPortImageRgb portReal;
@@ -34,13 +35,14 @@ namespace MMCMLibrary.Modalities
         /// <param name="name">Name of the modality. It will be used to open the corresponding
         /// yarp port</param>
         /// <param name="size">Number of components of this modality</param>
-        public YarpModalityImageRgb(string _mapName, string _name, int _w, int _h, bool isBlocking = false):
+        public YarpModalityImageRgb(string _mapName, string _name, int _w, int _h, bool isBlocking = false, string _autoconnect_source = null) :
             base(_name, _w * _h * 3)
         {
             w = _w;
             h = _h;
-		  mapName = _mapName;
-		  isBlockingRead = isBlocking;
+            mapName = _mapName;
+            isBlockingRead = isBlocking;
+            autoconnect_source = _autoconnect_source;
             Initialise();
         }
 
@@ -52,6 +54,8 @@ namespace MMCMLibrary.Modalities
             portReal.open("/" + mapName + "/" + name + "/real:i");
             portPredicted.open("/" + mapName + "/" + name + "/predicted:o");
             portPerceived.open("/" + mapName + "/" + name + "/perceived:o");
+            if (autoconnect_source != null)
+                Network.connect(autoconnect_source, YarpModalityVector.getRealPortName(mapName, name));
             base.Initialise();
         }
 
@@ -74,7 +78,7 @@ namespace MMCMLibrary.Modalities
         {
             ImageRgb img = portReal.read(isBlockingRead);
 
-            if (img != null )
+            if (img != null)
             {
                 RealValue = Image2Vector(img);
             }
@@ -158,15 +162,16 @@ namespace MMCMLibrary.Modalities
             ImageRgb img = new ImageRgb();
             Vector2Image(rawValues, ref img);
             return HelpersLib.ImageManipulation.toBmp(img);
-        }        
-        
+        }
+
         public YarpModalityImageRgb(SerializationInfo info, StreamingContext ctxt)
-            :base(info,ctxt)
+            : base(info, ctxt)
         {
             mapName = (string)info.GetValue("mapName", typeof(string));
             w = (int)info.GetValue("w", typeof(int));
-		  h = (int)info.GetValue("h", typeof(int));
-		  isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
+            h = (int)info.GetValue("h", typeof(int));
+            isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
+            autoconnect_source = (string)info.GetValue("autoconnect", typeof(string)); isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -174,8 +179,9 @@ namespace MMCMLibrary.Modalities
             base.GetObjectData(info, ctxt);
             info.AddValue("mapName", mapName);
             info.AddValue("w", w);
-		  info.AddValue("h", h);
-		  info.AddValue("isBlocking", isBlockingRead);
+            info.AddValue("h", h);
+            info.AddValue("isBlocking", isBlockingRead);
+            info.AddValue("autoconnect", autoconnect_source);
         }
     }
 }

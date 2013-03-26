@@ -13,15 +13,19 @@ namespace MMCMLibrary.Modalities
     /// <summary>
     /// A simple class that wrap a BufferedPortBottle so it is used for float[]
     /// </summary>
-    public class YarpModalitySound:IModality
+    public class YarpModalitySound : IModality
     {
+        private string autoconnect_source;
         private int bufferSize;
-	   private string mapName;
-	   private bool isBlockingRead;
+        private string mapName;
+        private bool isBlockingRead;
 
-        [NonSerialized] private BufferedPortSound portReal;
-        [NonSerialized] private BufferedPortSound portPredicted;
-        [NonSerialized] private BufferedPortSound portPerceived;
+        [NonSerialized]
+        private BufferedPortSound portReal;
+        [NonSerialized]
+        private BufferedPortSound portPredicted;
+        [NonSerialized]
+        private BufferedPortSound portPerceived;
         public string portRealName { get { return portReal.getName().c_str(); } }
         public string portpredictedName { get { return portPredicted.getName().c_str(); } }
         public string portPerceivedName { get { return portPerceived.getName().c_str(); } }
@@ -31,11 +35,12 @@ namespace MMCMLibrary.Modalities
         /// <param name="name">Name of the modality. It will be used to open the corresponding
         /// yarp port</param>
         /// <param name="size">Number of components of this modality</param>
-        public YarpModalitySound(string _mapName, string _name, int _bufferSize, bool isBlocking = false):
-            base(_name, _bufferSize )
+        public YarpModalitySound(string _mapName, string _name, int _bufferSize, bool isBlocking = false, string _autoconnect_source = null) :
+            base(_name, _bufferSize)
         {
-		  mapName = _mapName;
-		  isBlockingRead = isBlocking; 
+            mapName = _mapName;
+            isBlockingRead = isBlocking;
+            autoconnect_source = _autoconnect_source;
             Initialise();
         }
 
@@ -47,6 +52,8 @@ namespace MMCMLibrary.Modalities
             portReal.open("/" + mapName + "/" + name + "/real:i");
             portPredicted.open("/" + mapName + "/" + name + "/predicted:o");
             portPerceived.open("/" + mapName + "/" + name + "/perceived:o");
+            if (autoconnect_source != null)
+                Network.connect(autoconnect_source, YarpModalityVector.getRealPortName(mapName, name));
             base.Initialise();
         }
 
@@ -68,9 +75,9 @@ namespace MMCMLibrary.Modalities
         /// </summary>
         public override void ReadRealValue()
         {
-		  Sound s = portReal.read(isBlockingRead);
+            Sound s = portReal.read(isBlockingRead);
 
-            if (s != null )
+            if (s != null)
             {
                 RealValue = Sound2Vector(s);
             }
@@ -82,7 +89,7 @@ namespace MMCMLibrary.Modalities
         public override void WritePredictedValue()
         {
             Sound snd = portPredicted.prepare();
-            Vector2Sound(PredictedValue,ref snd);
+            Vector2Sound(PredictedValue, ref snd);
             portPredicted.write();
         }
 
@@ -91,9 +98,9 @@ namespace MMCMLibrary.Modalities
         /// </summary>
         public override void WritePerceivedValue()
         {
-		  Sound snd = portPredicted.prepare();
-		  Vector2Sound(PerceivedValue, ref snd);
-		  portPredicted.write();
+            Sound snd = portPredicted.prepare();
+            Vector2Sound(PerceivedValue, ref snd);
+            portPredicted.write();
         }
 
         /// <summary>
@@ -104,10 +111,10 @@ namespace MMCMLibrary.Modalities
         protected float[] Sound2Vector(Sound snd)
         {
             float[] v = new float[size];
-		  
+
             for (int i = 0; i < snd.getSamples(); i++)
             {
-			 v[i] = snd.getSafe(i) / 255.0f;
+                v[i] = snd.getSafe(i) / 255.0f;
             }
             return v;
         }
@@ -116,22 +123,24 @@ namespace MMCMLibrary.Modalities
         {
             for (int i = 0; i < rawValues.Length; i++)
             {
-			 snd.setSafe(i,(int)rawValues[i]*255);
+                snd.setSafe(i, (int)rawValues[i] * 255);
             }
         }
 
         public YarpModalitySound(SerializationInfo info, StreamingContext ctxt)
-            :base(info,ctxt)
+            : base(info, ctxt)
         {
-		  mapName = (string)info.GetValue("mapName", typeof(string));
-		  isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
+            mapName = (string)info.GetValue("mapName", typeof(string));
+            isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
+            autoconnect_source = (string)info.GetValue("autoconnect", typeof(string)); isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             base.GetObjectData(info, ctxt);
-		  info.AddValue("mapName", mapName);
-		  info.AddValue("isBlocking", isBlockingRead);
+            info.AddValue("mapName", mapName);
+            info.AddValue("isBlocking", isBlockingRead);
+            info.AddValue("autoconnect", autoconnect_source);
         }
     }
 }

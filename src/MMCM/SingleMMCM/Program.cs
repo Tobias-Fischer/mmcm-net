@@ -42,7 +42,7 @@ namespace ConsoleLauncher
                 rf.setDefaultConfigFile(configFile);
 
             SVector argsVect = new SVector(args);
-            rf.configure("EFAA_ROOT", argsVect);
+            rf.configure("MMCM_ROOT", argsVect);
 
             IConvergenceZone cvz = null;
             if (loadingFromWeights)
