@@ -1,8 +1,18 @@
 ﻿<Window x:Class="CVZ_Simulator.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" xmlns:my="clr-namespace:CVZ_Simulator" xmlns:my1="clr-namespace:DragDropCanvas">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*" />
+            <ColumnDefinition Width="423" />
+        </Grid.ColumnDefinitions>
+        <my1:DragAndDropCanvas Grid.Column="1" Height="311" HorizontalAlignment="Left" x:Name="modelCanvas" VerticalAlignment="Top" Width="423" Background="#FFF3F6EC" >
+            <Canvas.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add CVZ" Click="modelCanvas_AdCVZ"/>
+                </ContextMenu>
+            </Canvas.ContextMenu>
+        </my1:DragAndDropCanvas>
     </Grid>
 </Window>

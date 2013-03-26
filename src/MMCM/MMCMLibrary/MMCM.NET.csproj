@@ -55,9 +55,6 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Accelerator">
-      <HintPath>..\..\..\..\Libraries\Accelerator2\bin\Managed\Microsoft.Accelerator.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -73,13 +70,13 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="YarpCS">
-      <HintPath>..\..\..\..\yarp2\bindings\csBuild\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
+    <Reference Include="YarpCS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\yarp2\bindings\buildCS\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CVZFactory.cs" />
-    <Compile Include="CVZ\MMCM\CVZ_MMCM_GPU.cs" />
     <Compile Include="CVZ\MMCM\MMCM_ControlPanel.cs">
       <SubType>Form</SubType>
     </Compile>

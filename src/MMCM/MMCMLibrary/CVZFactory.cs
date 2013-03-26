@@ -47,15 +47,15 @@ namespace MMCMLibrary
                         break;
                     }
 
-                case "MMCM_GPU":
-                    {
-                        cvz = new CVZ_MMCM_GPU(mapName, h, w, l);
-                        float learningRate = (float)rf.check("learningRate", new Value(0.07f)).asDouble();
-                        float sigma = (float)rf.check("sigma", new Value((float)((1 / 4.0) * (w + h) / 2.0))).asDouble();
-                        Console.WriteLine("Learning Rate: " + learningRate);
-                        Console.WriteLine("Sigma: " + sigma);
-                        break;
-                    }
+                //case "MMCM_GPU":
+                //    {
+                //        cvz = new CVZ_MMCM_GPU(mapName, h, w, l);
+                //        float learningRate = (float)rf.check("learningRate", new Value(0.07f)).asDouble();
+                //        float sigma = (float)rf.check("sigma", new Value((float)((1 / 4.0) * (w + h) / 2.0))).asDouble();
+                //        Console.WriteLine("Learning Rate: " + learningRate);
+                //        Console.WriteLine("Sigma: " + sigma);
+                //        break;
+                //    }
             }
 
             //Unknown map type
