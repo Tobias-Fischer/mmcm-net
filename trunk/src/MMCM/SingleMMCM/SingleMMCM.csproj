@@ -62,7 +62,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="YarpCS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\yarp2\bindings\csBuild\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
+      <HintPath>..\..\..\..\yarp2\bindings\buildCS\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

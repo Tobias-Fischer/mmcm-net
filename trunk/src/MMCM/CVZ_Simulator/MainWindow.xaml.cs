@@ -23,5 +23,14 @@ namespace CVZ_Simulator
         {
             InitializeComponent();
         }
+
+        private void modelCanvas_AdCVZ(object sender, RoutedEventArgs e)
+        {
+            Point mousePosition = Mouse.GetPosition(modelCanvas);
+            Ctrl_CVZ nCVZ = new Ctrl_CVZ();
+            Canvas.SetTop(nCVZ, mousePosition.Y);
+            Canvas.SetLeft(nCVZ, mousePosition.X);
+            modelCanvas.Children.Add(nCVZ);
+        }
     }
 }
