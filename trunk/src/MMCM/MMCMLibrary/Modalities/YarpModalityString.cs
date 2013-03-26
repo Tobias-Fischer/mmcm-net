@@ -179,21 +179,21 @@ namespace MMCMLibrary.Modalities
 
         #endregion
 
-        public override System.Windows.Forms.Control GetControl(bool useImageFormat = false)
-        {
-            if (useImageFormat)
-            {
-                ImageModalityCtrl ctrl = new ImageModalityCtrl();
-                ctrl.LinkToModality(this);
-                return ctrl;
-            }
-            else
-            {
-                StringModalityControl ctrl = new StringModalityControl();
-                ctrl.LinkToModality(this);
-                return ctrl;
-            }
-        }
+        //public override System.Windows.Forms.Control GetControl(bool useImageFormat = false)
+        //{
+        //    if (useImageFormat)
+        //    {
+        //        ImageModalityCtrl ctrl = new ImageModalityCtrl();
+        //        ctrl.LinkToModality(this);
+        //        return ctrl;
+        //    }
+        //    else
+        //    {
+        //        StringModalityControl ctrl = new StringModalityControl();
+        //        ctrl.LinkToModality(this);
+        //        return ctrl;
+        //    }
+        //}
 
         #region Serialization
         public YarpModalityString(SerializationInfo info, StreamingContext ctxt)

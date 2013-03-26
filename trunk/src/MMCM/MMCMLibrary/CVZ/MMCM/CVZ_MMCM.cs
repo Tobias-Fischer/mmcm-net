@@ -362,6 +362,11 @@ namespace MMCMLibrary
 
         #region GUI
 
+        public bool GetVisualization(int layer, ref ImageRgb img)
+        {
+            return HelpersLib.ImageManipulation.toImg(GetVisualization(layer), ref img);
+        }
+
         public System.Drawing.Bitmap GetVisualization(int layer)
         {
             double time1 = Time.now();
@@ -417,15 +422,6 @@ namespace MMCMLibrary
             double time2 = Time.now();
             //Console.WriteLine("Visualization computed in " + (time2 - time1).ToString());
             return bmp;
-        }
-
-        /// <summary>
-        /// Return a winform used to control the parameters of the MMCM
-        /// </summary>
-        /// <returns></returns>
-        public MMCM_ControlPanel GetControlPanel()
-        {
-            return new MMCM_ControlPanel(this);
         }
 
         #endregion GUI
