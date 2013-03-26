@@ -13,10 +13,11 @@ namespace MMCMLibrary.Modalities
     /// <summary>
     /// A simple class that wrap a BufferedPortBottle so it is used for strings
     /// </summary>
-    public class YarpModalityString:IModality
+    public class YarpModalityString : IModality
     {
-	   string mapName;
-	   private bool isBlockingRead;
+        private string autoconnect_source;
+        string mapName;
+        private bool isBlockingRead;
 
         [NonSerialized]
         private float[] forcedValue = null;
@@ -50,12 +51,13 @@ namespace MMCMLibrary.Modalities
         /// </summary>
         /// <param name="name">Name of the modality. It will be used to open the corresponding
         /// yarp port</param>
-        public YarpModalityString(string _mapName, string _name, bool isBlocking = false):
+        public YarpModalityString(string _mapName, string _name, bool isBlocking = false, string _autoconnect_source = null) :
             base(_name, 4)
         {
 
-		  mapName = _mapName;
-		  isBlockingRead = isBlocking;
+            mapName = _mapName;
+            isBlockingRead = isBlocking;
+            autoconnect_source = _autoconnect_source;
             Initialise();
         }
 
@@ -67,6 +69,8 @@ namespace MMCMLibrary.Modalities
             portReal.open("/" + mapName + "/" + name + "/real:i");
             portPredicted.open("/" + mapName + "/" + name + "/predicted:o");
             portPerceived.open("/" + mapName + "/" + name + "/perceived:o");
+            if (autoconnect_source != null)
+                Network.connect(autoconnect_source, YarpModalityVector.getRealPortName(mapName, name));
             base.Initialise();
         }
 
@@ -92,7 +96,7 @@ namespace MMCMLibrary.Modalities
                 forcedValue = null;
                 return;
             }
-		  Bottle b = portReal.read(isBlockingRead);
+            Bottle b = portReal.read(isBlockingRead);
 
             if (b != null)
             {
@@ -172,7 +176,7 @@ namespace MMCMLibrary.Modalities
             }
             return s;
         }
-        
+
         #endregion
 
         public override System.Windows.Forms.Control GetControl(bool useImageFormat = false)
@@ -193,17 +197,19 @@ namespace MMCMLibrary.Modalities
 
         #region Serialization
         public YarpModalityString(SerializationInfo info, StreamingContext ctxt)
-            :base(info,ctxt)
+            : base(info, ctxt)
         {
-		  mapName = (string)info.GetValue("mapName", typeof(string));
-		  isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
+            mapName = (string)info.GetValue("mapName", typeof(string));
+            isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
+            autoconnect_source = (string)info.GetValue("autoconnect", typeof(string)); isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             base.GetObjectData(info, ctxt);
-		  info.AddValue("mapName", mapName);
-		  info.AddValue("isBlocking", isBlockingRead);
+            info.AddValue("mapName", mapName);
+            info.AddValue("isBlocking", isBlockingRead);
+            info.AddValue("autoconnect", autoconnect_source);
         }
         #endregion
     }

@@ -13,15 +13,19 @@ namespace MMCMLibrary.Modalities
     /// <summary>
     /// A simple class that wrap a BufferedPortBottle so it is used for float[]
     /// </summary>
-    public class YarpModalityImageFloat:IModality
+    public class YarpModalityImageFloat : IModality
     {
+        private string autoconnect_source;
         private int w, h, padding;
         private string mapName;
-	   private bool isBlockingRead;
+        private bool isBlockingRead;
 
-        [NonSerialized] private BufferedPortImageFloat portReal;
-        [NonSerialized] private BufferedPortImageFloat portPredicted;
-        [NonSerialized] private BufferedPortImageFloat portPerceived;
+        [NonSerialized]
+        private BufferedPortImageFloat portReal;
+        [NonSerialized]
+        private BufferedPortImageFloat portPredicted;
+        [NonSerialized]
+        private BufferedPortImageFloat portPerceived;
         public string portRealName { get { return portReal.getName().c_str(); } }
         public string portpredictedName { get { return portPredicted.getName().c_str(); } }
         public string portPerceivedName { get { return portPerceived.getName().c_str(); } }
@@ -31,14 +35,15 @@ namespace MMCMLibrary.Modalities
         /// <param name="name">Name of the modality. It will be used to open the corresponding
         /// yarp port</param>
         /// <param name="size">Number of components of this modality</param>
-        public YarpModalityImageFloat(string _mapName, string _name, int _w, int _h, int _padding = 0, bool isBlocking = false):
-            base(_name, _w * _h )
+        public YarpModalityImageFloat(string _mapName, string _name, int _w, int _h, int _padding = 0, bool isBlocking = false, string _autoconnect_source = null) :
+            base(_name, _w * _h)
         {
             w = _w;
             h = _h;
             padding = _padding;
             mapName = _mapName;
-		  isBlockingRead = isBlocking;
+            isBlockingRead = isBlocking;
+            autoconnect_source = _autoconnect_source;
             Initialise();
         }
 
@@ -50,6 +55,8 @@ namespace MMCMLibrary.Modalities
             portReal.open("/" + mapName + "/" + name + "/real:i");
             portPredicted.open("/" + mapName + "/" + name + "/predicted:o");
             portPerceived.open("/" + mapName + "/" + name + "/perceived:o");
+            if (autoconnect_source != null)
+                Network.connect(autoconnect_source, YarpModalityVector.getRealPortName(mapName, name));
             base.Initialise();
         }
 
@@ -73,7 +80,7 @@ namespace MMCMLibrary.Modalities
         {
             ImageFloat img = portReal.read(isBlockingRead);
 
-            if (img != null )
+            if (img != null)
             {
                 RealValue = Image2Vector(Crop(img));
             }
@@ -102,7 +109,7 @@ namespace MMCMLibrary.Modalities
         protected ImageFloat Crop(ImageFloat img)
         {
             ImageFloat img2 = new ImageFloat();
-            img2.resize(img.width() - 2 * padding, img.height() - 2 * padding); 
+            img2.resize(img.width() - 2 * padding, img.height() - 2 * padding);
             for (int x = padding; x < img.width() - padding; x++)
             {
                 for (int y = padding; y < img.height() - padding; y++)
@@ -126,7 +133,7 @@ namespace MMCMLibrary.Modalities
             {
                 for (int j = 0; j < h; j++)
                 {
-                    img.setPixel(i, j, (float)v[j * w + i] * 255.0f );
+                    img.setPixel(i, j, (float)v[j * w + i] * 255.0f);
                 }
             }
             double t1 = Time.now();
@@ -152,7 +159,7 @@ namespace MMCMLibrary.Modalities
             {
                 for (int j = 0; j < h; j++)
                 {
-                    float px = img2.getPixel(i, j) /255.0f;
+                    float px = img2.getPixel(i, j) / 255.0f;
                     v[j * w + i] = px;
                 }
             }
@@ -170,13 +177,14 @@ namespace MMCMLibrary.Modalities
         }
 
         public YarpModalityImageFloat(SerializationInfo info, StreamingContext ctxt)
-            :base(info,ctxt)
+            : base(info, ctxt)
         {
             mapName = (string)info.GetValue("mapName", typeof(string));
             w = (int)info.GetValue("w", typeof(int));
             h = (int)info.GetValue("h", typeof(int));
             padding = (int)info.GetValue("padding", typeof(int));
-		  isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
+            isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
+            autoconnect_source = (string)info.GetValue("autoconnect", typeof(string));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -185,8 +193,9 @@ namespace MMCMLibrary.Modalities
             info.AddValue("mapName", mapName);
             info.AddValue("w", w);
             info.AddValue("h", h);
-		  info.AddValue("padding", padding);
-		  info.AddValue("isBlocking", isBlockingRead);
+            info.AddValue("padding", padding);
+            info.AddValue("isBlocking", isBlockingRead);
+            info.AddValue("autoconnect", autoconnect_source);
         }
     }
 }

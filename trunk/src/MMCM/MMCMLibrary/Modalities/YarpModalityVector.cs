@@ -12,11 +12,12 @@ namespace MMCMLibrary.Modalities
     /// <summary>
     /// A simple class that wrap a BufferedPortBottle so it is used for float[]
     /// </summary>
-    public class YarpModalityVector:IModality
+    public class YarpModalityVector : IModality
     {
+        private string autoconnect_source;
         string mapName;
-	   private float[] minBounds, maxBounds;
-	   private bool isBlockingRead;
+        private float[] minBounds, maxBounds;
+        private bool isBlockingRead;
 
         //Vectors defining the boundaries of the input spaces. Used to scale it in [0,1]
 
@@ -53,12 +54,12 @@ namespace MMCMLibrary.Modalities
         /// <param name="name">Name of the modality. It will be used to open the corresponding
         /// yarp port</param>
         /// <param name="size">Number of components of this modality</param>
-        public YarpModalityVector(string _mapName, string _name, int _size, float[] minBounds = null, float[] maxBounds = null, bool isBlocking = false):
+        public YarpModalityVector(string _mapName, string _name, int _size, float[] minBounds = null, float[] maxBounds = null, bool isBlocking = false, string _autoconnect_source = null) :
             base(_name, _size)
         {
 
-		  mapName = _mapName;
-		  isBlockingRead = isBlocking;
+            mapName = _mapName;
+            isBlockingRead = isBlocking;
             if (minBounds != null && maxBounds != null)
             {
                 this.minBounds = minBounds;
@@ -74,6 +75,7 @@ namespace MMCMLibrary.Modalities
                     this.maxBounds[i] = 1;
                 }
             }
+            autoconnect_source = _autoconnect_source;
             Initialise();
         }
 
@@ -85,6 +87,8 @@ namespace MMCMLibrary.Modalities
             portReal.open("/" + mapName + "/" + name + "/real:i");
             portPredicted.open("/" + mapName + "/" + name + "/predicted:o");
             portPerceived.open("/" + mapName + "/" + name + "/perceived:o");
+            if (autoconnect_source != null)
+                Network.connect(autoconnect_source, YarpModalityVector.getRealPortName(mapName, name));
             base.Initialise();
         }
 
@@ -110,9 +114,9 @@ namespace MMCMLibrary.Modalities
                 forcedValue = null;
                 return;
             }
-		  Bottle b = portReal.read(isBlockingRead);
+            Bottle b = portReal.read(isBlockingRead);
 
-            if (b != null )
+            if (b != null)
             {
                 int a = b.size();
                 if (b.size() == size)
@@ -145,7 +149,7 @@ namespace MMCMLibrary.Modalities
 
             for (int i = 0; i < size; i++)
             {
-                b.addDouble( (PredictedValue[i] * (maxBounds[i] - minBounds[i])) +minBounds[i] );
+                b.addDouble((PredictedValue[i] * (maxBounds[i] - minBounds[i])) + minBounds[i]);
             }
             portPredicted.write();
         }
@@ -166,12 +170,13 @@ namespace MMCMLibrary.Modalities
         }
 
         public YarpModalityVector(SerializationInfo info, StreamingContext ctxt)
-            :base(info,ctxt)
+            : base(info, ctxt)
         {
             mapName = (string)info.GetValue("mapName", typeof(string));
             minBounds = (float[])info.GetValue("minBounds", typeof(float[]));
-		  minBounds = (float[])info.GetValue("maxBounds", typeof(float[]));
-		  isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
+            minBounds = (float[])info.GetValue("maxBounds", typeof(float[]));
+            isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
+            autoconnect_source = (string)info.GetValue("autoconnect", typeof(string)); isBlockingRead = (bool)info.GetValue("isBlocking", typeof(bool));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -179,8 +184,9 @@ namespace MMCMLibrary.Modalities
             base.GetObjectData(info, ctxt);
             info.AddValue("mapName", mapName);
             info.AddValue("minBounds", minBounds);
-		  info.AddValue("maxBounds", maxBounds);
-		  info.AddValue("isBlocking", isBlockingRead);
+            info.AddValue("maxBounds", maxBounds);
+            info.AddValue("isBlocking", isBlockingRead);
+            info.AddValue("autoconnect", autoconnect_source);
         }
     }
 }

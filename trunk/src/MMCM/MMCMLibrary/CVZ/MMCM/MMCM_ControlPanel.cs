@@ -119,8 +119,9 @@ namespace MMCMLibrary
             //1 : Sigma
             //2 : Period of refreshment (part of the control pannel)
 
-            gridMapParameters[0, 0].Value = m_map.LearningRate;
-            gridMapParameters[1, 0].Value = m_map.Sigma;
+            textBoxLearningRate.Text = m_map.LearningRate.ToString();
+            textBoxSigma.Text = m_map.Sigma.ToString();
+            textBoxPeriod.Text = m_period.ToString();
 
             while (gridModalitiesParameters.RowCount < m_map.modalities.Count)
             {
@@ -156,9 +157,9 @@ namespace MMCMLibrary
 
         private void SetParameters(object sender, EventArgs e)
         {
-            m_map.LearningRate = (float)Convert.ToDouble(gridMapParameters[0, 0].Value);
-            m_map.Sigma = (float)Convert.ToDouble(gridMapParameters[1, 0].Value);
-            m_period = Convert.ToInt16(gridMapParameters[2, 0].Value);
+            m_map.LearningRate = (float)Convert.ToDouble(textBoxLearningRate.Text);
+            m_map.Sigma = (float)Convert.ToDouble(textBoxSigma.Text);
+            m_period = Convert.ToInt16(textBoxPeriod.Text);
             m_map.feedbackInfluence = (float)Convert.ToDouble(feedbakcTextBoxInfluence.Text);
            for (int r = 0; r < gridModalitiesParameters.Rows.Count; r++)
 			{

@@ -24,14 +24,14 @@ namespace MMCMLibrary
         {
             IConvergenceZone cvz = null;
             string mapType = rf.check("mapType", new Value("MMCM")).asString().c_str();
-		  string mapName = rf.check("mapName", new Value("defaultMap")).asString().c_str();
-		  bool hSynch = rf.check("hsync");
+		    string mapName = rf.check("mapName", new Value("defaultMap")).asString().c_str();
+		    bool hSynch = rf.check("hsync");
             int w = rf.check("width", new Value(10)).asInt();
             int h = rf.check("height", new Value(10)).asInt();
             int l = rf.check("layers", new Value(4)).asInt();
             Console.WriteLine("Map " + mapName + " (" + mapType + ")");
-		  Console.WriteLine("Shape " + l + "x(" + w + "x" + h + ")");
-		  Console.WriteLine("HSynch= " + hSynch);
+		    Console.WriteLine("Shape " + l + "x(" + w + "x" + h + ")");
+		    Console.WriteLine("HSynch= " + hSynch);
 
             switch (mapType)
             {
@@ -79,7 +79,7 @@ namespace MMCMLibrary
                 string type = modalityGroup.check("type", new Value("random")).asString().c_str();
                 float influence = (float)modalityGroup.check("influence", new Value(1.0)).asDouble();
                 Console.WriteLine("Modality: " + name + " (" + type + ")");
-			 Console.WriteLine("Influence: " + influence);
+                Console.WriteLine("Influence: " + influence);
                 switch (type)
                 {
                     case "random":
@@ -94,8 +94,12 @@ namespace MMCMLibrary
                             int size = modalityGroup.check("size", new Value(1)).asInt();
                             float[] minBounds = null;
                             float[] maxBounds = null;
-					   bool isBlocking = modalityGroup.check("isBlocking");
-					   Console.WriteLine("isBlocking: " + isBlocking);
+                            bool isBlocking = modalityGroup.check("isBlocking");
+                            string autoconnect = null;
+                            if (modalityGroup.check("autoconnect"))
+                                autoconnect = modalityGroup.find("autoconnect").asString().c_str();
+
+                            Console.WriteLine("isBlocking: " + isBlocking);
                             if (modalityGroup.check("minBounds"))
                             {
                                 minBounds = new float[size];
@@ -111,80 +115,94 @@ namespace MMCMLibrary
                                 for (int c = 0; c < maxBot.size(); c++)
                                     maxBounds[c] = (float)maxBot.get(c).asDouble();
                             }
-					   mod = new YarpModalityVector(mapName, name, size, minBounds, maxBounds, isBlocking);
+                            mod = new YarpModalityVector(mapName, name, size, minBounds, maxBounds, isBlocking, autoconnect);
 
-                            if (modalityGroup.check("autoconnect"))
-                            {
-                                string sourceConnection = modalityGroup.find("autoconnect").asString().c_str();
-						  while (!Network.connect(sourceConnection, YarpModalityVector.getRealPortName(mapName, name)))
-						  {
-							 Console.WriteLine("Waiting for..." + sourceConnection);
-							 Time.delay(1.0);
-						  }
-                            }
+                            //if (modalityGroup.check("autoconnect"))
+                            //{
+                            //    string sourceConnection = modalityGroup.find("autoconnect").asString().c_str();
+                            //    while (!Network.connect(sourceConnection, YarpModalityVector.getRealPortName(mapName, name)))
+                            //    {
+                            //        Console.WriteLine("Waiting for..." + sourceConnection);
+                            //        Time.delay(1.0);
+                            //    }
+                            //}
                             break;
                         }
 
                     case "yarpString":
-				    {
-					   bool isBlocking = modalityGroup.check("isBlocking");
-					   mod = new YarpModalityString(mapName, name, isBlocking);
-					   Console.WriteLine("isBlocking: " + isBlocking);
-
+                        {
+                            bool isBlocking = modalityGroup.check("isBlocking"); 
+                            string autoconnect = null;
                             if (modalityGroup.check("autoconnect"))
-                            {
-                                string sourceConnection = modalityGroup.find("autoconnect").asString().c_str();
-                                Network.connect(sourceConnection, YarpModalityVector.getRealPortName(mapName, name));
-                            }
+                                autoconnect = modalityGroup.find("autoconnect").asString().c_str();
+                            mod = new YarpModalityString(mapName, name, isBlocking, autoconnect);
+
+                            Console.WriteLine("isBlocking: " + isBlocking);
+
+                            //if (modalityGroup.check("autoconnect"))
+                            //{
+                            //    string sourceConnection = modalityGroup.find("autoconnect").asString().c_str();
+                            //    Network.connect(sourceConnection, YarpModalityVector.getRealPortName(mapName, name));
+                            //}
                             break;
                         }
 
                     case "yarpImageRgb":
-				    {
-					   bool isBlocking = modalityGroup.check("isBlocking");
-					   Console.WriteLine("isBlocking: " + isBlocking);
+                        {
+                            bool isBlocking = modalityGroup.check("isBlocking");
+                            Console.WriteLine("isBlocking: " + isBlocking);
                             int wImg = modalityGroup.check("width", new Value(32)).asInt();
                             int hImg = modalityGroup.check("height", new Value(32)).asInt();
-					   mod = new YarpModalityImageRgb(mapName, name, wImg, hImg, isBlocking);
-                            Console.WriteLine("Resolution: " + wImg + "x" + hImg);
+                            string autoconnect = null;
                             if (modalityGroup.check("autoconnect"))
-                            {
-                                string sourceConnection = modalityGroup.find("autoconnect").asString().c_str();
-                                Network.connect(sourceConnection, YarpModalityVector.getRealPortName(mapName, name));
-                            }
+                                autoconnect = modalityGroup.find("autoconnect").asString().c_str();
+                            mod = new YarpModalityImageRgb(mapName, name, wImg, hImg, isBlocking, autoconnect);
+                            Console.WriteLine("Resolution: " + wImg + "x" + hImg);
+                            //if (modalityGroup.check("autoconnect"))
+                            //{
+                            //    string sourceConnection = modalityGroup.find("autoconnect").asString().c_str();
+                            //    Network.connect(sourceConnection, YarpModalityVector.getRealPortName(mapName, name));
+                            //}
                             break;
                         }
 
                     case "yarpImageFloat":
-				    {
-					   bool isBlocking = modalityGroup.check("isBlocking");
-					   Console.WriteLine("isBlocking: " + isBlocking);
+                        {
+                            bool isBlocking = modalityGroup.check("isBlocking");
+                            Console.WriteLine("isBlocking: " + isBlocking);
                             int wImg = modalityGroup.check("width", new Value(32)).asInt();
                             int hImg = modalityGroup.check("height", new Value(32)).asInt();
                             int padding = modalityGroup.check("padding", new Value(0)).asInt();
-					   mod = new YarpModalityImageFloat(mapName, name, wImg, hImg, padding, isBlocking);
-                            Console.WriteLine("Resolution: " + wImg + "x" + hImg);
+                            string autoconnect = null;
                             if (modalityGroup.check("autoconnect"))
-                            {
-                                string sourceConnection = modalityGroup.find("autoconnect").asString().c_str();
-                                Network.connect(sourceConnection, YarpModalityVector.getRealPortName(mapName, name));
-                            }
+                                autoconnect = modalityGroup.find("autoconnect").asString().c_str();
+                            mod = new YarpModalityImageFloat(mapName, name, wImg, hImg, padding, isBlocking,autoconnect);
+                            Console.WriteLine("Resolution: " + wImg + "x" + hImg);
+                            //if (modalityGroup.check("autoconnect"))
+                            //{
+                            //    string sourceConnection = modalityGroup.find("autoconnect").asString().c_str();
+                            //    Network.connect(sourceConnection, YarpModalityVector.getRealPortName(mapName, name));
+                            //}
                             break;
                         }
-				case "yarpSound":
-				    {
-					   bool isBlocking = modalityGroup.check("isBlocking");
-					   Console.WriteLine("isBlocking: " + isBlocking);
-					   int size = modalityGroup.check("size", new Value(512)).asInt();
-					   mod = new YarpModalitySound(mapName, name, size, isBlocking);
-					   Console.WriteLine("Buffer: " + size);
-					   if (modalityGroup.check("autoconnect"))
-					   {
-						  string sourceConnection = modalityGroup.find("autoconnect").asString().c_str();
-						  Network.connect(sourceConnection, YarpModalityVector.getRealPortName(mapName, name));
-					   }
-					   break;
-				    }
+
+                    case "yarpSound":
+                        {
+                            bool isBlocking = modalityGroup.check("isBlocking");
+                            Console.WriteLine("isBlocking: " + isBlocking);
+                            int size = modalityGroup.check("size", new Value(512)).asInt();
+                            string autoconnect = null;
+                            if (modalityGroup.check("autoconnect"))
+                                autoconnect = modalityGroup.find("autoconnect").asString().c_str();
+                            mod = new YarpModalitySound(mapName, name, size, isBlocking,autoconnect);
+                            Console.WriteLine("Buffer: " + size);
+                            //if (modalityGroup.check("autoconnect"))
+                            //{
+                            //    string sourceConnection = modalityGroup.find("autoconnect").asString().c_str();
+                            //    Network.connect(sourceConnection, YarpModalityVector.getRealPortName(mapName, name));
+                            //}
+                            break;
+                        }
                 }
 
                 Console.WriteLine();
