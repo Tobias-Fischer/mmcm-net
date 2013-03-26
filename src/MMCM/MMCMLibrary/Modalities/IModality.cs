@@ -220,21 +220,21 @@ namespace MMCMLibrary.Modalities
             }
         }
 
-        public virtual System.Windows.Forms.Control GetControl(bool useImageFormat = false)
-        {
-            if (useImageFormat)
-            {
-                ImageModalityCtrl ctrl = new ImageModalityCtrl();
-                ctrl.LinkToModality(this);
-                return ctrl;
-            }
-            else
-            {
-                IModalityControl ctrl = new IModalityControl();
-                ctrl.LinkToModality(this);
-                return ctrl;
-            }
-        }
+        //public virtual System.Windows.Forms.Control GetControl(bool useImageFormat = false)
+        //{
+        //    if (useImageFormat)
+        //    {
+        //        ImageModalityCtrl ctrl = new ImageModalityCtrl();
+        //        ctrl.LinkToModality(this);
+        //        return ctrl;
+        //    }
+        //    else
+        //    {
+        //        IModalityControl ctrl = new IModalityControl();
+        //        ctrl.LinkToModality(this);
+        //        return ctrl;
+        //    }
+        //}
 
         public virtual Bitmap getAsBmp(float[] rawValues)
         {

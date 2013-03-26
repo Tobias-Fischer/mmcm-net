@@ -80,7 +80,19 @@ namespace MMCMLibrary
                 //Create the modalities tab
                 if (displayModalities)
                 {
-                    flowLayoutPanelModalities.Controls.Add(m.GetControl(!(m is YarpModalityString)));
+                    //flowLayoutPanelModalities.Controls.Add(m.GetControl(!(m is YarpModalityString)));
+                    UserControl ctrl;
+                    if (!(m is YarpModalityString))
+                    {
+                        ctrl = new ImageModalityCtrl();
+                        (ctrl as ImageModalityCtrl).LinkToModality(m); 
+                    }
+                    else
+                    {
+                        ctrl = new IModalityControl();
+                        (ctrl as IModalityControl).LinkToModality(m);
+                    }
+                    flowLayoutPanelModalities.Controls.Add(ctrl);
                 }
 
                 //Create the chart tab
@@ -235,7 +247,7 @@ namespace MMCMLibrary
                     if (onStimulationDone != null)
                         onStimulationDone(null, null);
                 }
-                Time.delay(m_period / 1000.0);
+                System.Threading.Thread.Sleep(m_period);
             }
         }
 

@@ -58,7 +58,8 @@ namespace ConsoleLauncher
             }
 
             Application.EnableVisualStyles();
-            Application.Run((cvz as CVZ_MMCM).GetControlPanel());
+            MMCM_ControlPanel form = new MMCM_ControlPanel(cvz as CVZ_MMCM);
+            Application.Run(form);
         }
     }
 }

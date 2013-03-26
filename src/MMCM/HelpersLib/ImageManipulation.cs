@@ -53,5 +53,34 @@ namespace HelpersLib
                 }
             return bmp;
         }
+
+        public static bool toImg(Bitmap bmp, ref ImageRgb img)
+        {
+            img.resize(bmp.Width, bmp.Height);
+            try
+            {
+                unsafe
+                {
+                    BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, img.width(), img.height()),
+                        System.Drawing.Imaging.ImageLockMode.ReadOnly,
+                        System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+
+                    byte[] rawData = new byte[bmpData.Stride * bmpData.Height];
+                    Marshal.Copy(bmpData.Scan0, rawData, 0, rawData.Length);
+
+                    Marshal.Copy(rawData, 0, img.getRawImage(), rawData.Length);
+
+
+                    bmp.UnlockBits(bmpData);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Out.WriteLine("Exception while accessing image: " + e);
+                return false;
+            }
+
+            return true;
+        }
     }
 }
