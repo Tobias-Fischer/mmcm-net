@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,7 +11,6 @@
     <RootNamespace>RemoteMMCMGui</RootNamespace>
     <AssemblyName>RemoteMMCMGui</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -40,13 +39,12 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="YarpCS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="YarpCS, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\yarp2\bindings\buildCS\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
+      <HintPath>..\..\..\..\yarp2\bindings\build-cluster-cs\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -79,12 +77,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MMCM-Gui\MMCM-Gui.csproj">
-      <Project>{8B7D3D4F-46A9-4CBC-9592-496EF29B6A8E}</Project>
-      <Name>MMCM-Gui</Name>
-    </ProjectReference>
+    <Compile Include="MMCM_RemoteControlPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MMCM_RemoteControlPanel.Designer.cs">
+      <DependentUpon>MMCM_RemoteControlPanel.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MMCM_RemoteControlPanel.resx">
+      <DependentUpon>MMCM_RemoteControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -94,4 +95,14 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ProjectReference Include="..\MMCMLibrary\MMCM.NET.csproj">
+      <Project>{CCD18CD0-079C-4A60-A7F1-90933DD14D37}</Project>
+      <Name>MMCM.NET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HelpersLib\HelpersLib.csproj">
+      <Project>{278F624F-5C10-4563-BB17-5CA378D0965C}</Project>
+      <Name>HelpersLib</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

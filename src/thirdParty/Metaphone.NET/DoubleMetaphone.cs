@@ -558,11 +558,11 @@ namespace nullpointer.Metaphone
 					addMetaphoneCharacter("N");
 					break;
 	
-				case 'Ñ':
+/*				case 'Ñ':
 					current += 1;
 					addMetaphoneCharacter("N");
 					break;
-	
+*/	
 				case 'P':
 					if (m_word[current + 1] == 'H') {
 						addMetaphoneCharacter("F");

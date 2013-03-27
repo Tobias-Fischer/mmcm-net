@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -32,7 +32,6 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,8 +46,6 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -68,9 +65,9 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="YarpCS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="YarpCS, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\yarp2\bindings\buildCS\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
+      <HintPath>..\..\..\..\yarp2\bindings\build-cluster-cs\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -95,13 +92,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ThirdParty\Metaphone.NET\Metaphone.NET.csproj">
-      <Project>{A795F1E1-9357-430B-A86F-44DB614E595A}</Project>
-      <Name>Metaphone.NET</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HelpersLib\HelpersLib.csproj">
       <Project>{278F624F-5C10-4563-BB17-5CA378D0965C}</Project>
       <Name>HelpersLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdParty\Metaphone.NET\Metaphone.NET.csproj">
+      <Project>{A795F1E1-9357-430B-A86F-44DB614E595A}</Project>
+      <Name>Metaphone.NET</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

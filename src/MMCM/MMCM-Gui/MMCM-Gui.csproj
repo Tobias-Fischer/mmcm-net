@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,7 +11,6 @@
     <RootNamespace>MMCM_Gui</RootNamespace>
     <AssemblyName>MMCM-Gui</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -33,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,17 +43,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="YarpCS">
-      <HintPath>..\..\..\yarp2\bindings\buildCS\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
+    <Reference Include="YarpCS, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\yarp2\bindings\build-cluster-cs\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MMCM_RemoteControlPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MMCM_RemoteControlPanel.Designer.cs">
-      <DependentUpon>MMCM_RemoteControlPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Modalities\ImageModalityCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -83,11 +74,14 @@
     <Compile Include="Modalities\StringModalityControl.Designer.cs">
       <DependentUpon>StringModalityControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="MMCM_RemoteControlPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MMCM_RemoteControlPanel.Designer.cs">
+      <DependentUpon>MMCM_RemoteControlPanel.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MMCM_RemoteControlPanel.resx">
-      <DependentUpon>MMCM_RemoteControlPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Modalities\ImageModalityCtrl.resx">
       <DependentUpon>ImageModalityCtrl.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modalities\StringModalityControl.resx">
       <DependentUpon>StringModalityControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MMCM_RemoteControlPanel.resx">
+      <DependentUpon>MMCM_RemoteControlPanel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
