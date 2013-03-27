@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -74,12 +74,6 @@
     <Compile Include="Modalities\StringModalityControl.Designer.cs">
       <DependentUpon>StringModalityControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MMCM_RemoteControlPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MMCM_RemoteControlPanel.Designer.cs">
-      <DependentUpon>MMCM_RemoteControlPanel.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Modalities\ImageModalityCtrl.resx">
@@ -93,9 +87,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modalities\StringModalityControl.resx">
       <DependentUpon>StringModalityControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MMCM_RemoteControlPanel.resx">
-      <DependentUpon>MMCM_RemoteControlPanel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
