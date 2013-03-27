@@ -1,0 +1,96 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MMCM", "MMCM", "{9A90CF10-81CD-44EC-870A-9A23BC9C7A97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMCM.NET", "MMCM\MMCMLibrary\MMCM.NET.csproj", "{CCD18CD0-079C-4A60-A7F1-90933DD14D37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpersLib", "MMCM\HelpersLib\HelpersLib.csproj", "{278F624F-5C10-4563-BB17-5CA378D0965C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleMMCM_NoGui", "MMCM\SingleMMCM_NoGui\SingleMMCM_NoGui.csproj", "{A7C59985-392B-42CF-813F-32D4D098093B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteMMCMGui", "MMCM\RemoteMMCMGui\RemoteMMCMGui.csproj", "{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdParty", "ThirdParty", "{6266BABA-18D5-4C95-8175-74125AAE47F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metaphone.NET", "thirdParty\Metaphone.NET\Metaphone.NET.csproj", "{A795F1E1-9357-430B-A86F-44DB614E595A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{278F624F-5C10-4563-BB17-5CA378D0965C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{278F624F-5C10-4563-BB17-5CA378D0965C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{278F624F-5C10-4563-BB17-5CA378D0965C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{278F624F-5C10-4563-BB17-5CA378D0965C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{278F624F-5C10-4563-BB17-5CA378D0965C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{278F624F-5C10-4563-BB17-5CA378D0965C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{278F624F-5C10-4563-BB17-5CA378D0965C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{278F624F-5C10-4563-BB17-5CA378D0965C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{278F624F-5C10-4563-BB17-5CA378D0965C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{278F624F-5C10-4563-BB17-5CA378D0965C}.Release|x86.ActiveCfg = Release|Any CPU
+		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Debug|Any CPU.Build.0 = Debug|x86
+		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Debug|x86.ActiveCfg = Debug|x86
+		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Debug|x86.Build.0 = Debug|x86
+		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Release|Any CPU.ActiveCfg = Release|x86
+		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Release|Any CPU.Build.0 = Release|x86
+		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Release|Mixed Platforms.Build.0 = Release|x86
+		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Release|x86.ActiveCfg = Release|x86
+		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Release|x86.Build.0 = Release|x86
+		{A795F1E1-9357-430B-A86F-44DB614E595A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A795F1E1-9357-430B-A86F-44DB614E595A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A795F1E1-9357-430B-A86F-44DB614E595A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A795F1E1-9357-430B-A86F-44DB614E595A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A795F1E1-9357-430B-A86F-44DB614E595A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A795F1E1-9357-430B-A86F-44DB614E595A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A795F1E1-9357-430B-A86F-44DB614E595A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A795F1E1-9357-430B-A86F-44DB614E595A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A795F1E1-9357-430B-A86F-44DB614E595A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A795F1E1-9357-430B-A86F-44DB614E595A}.Release|x86.ActiveCfg = Release|Any CPU
+		{A7C59985-392B-42CF-813F-32D4D098093B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A7C59985-392B-42CF-813F-32D4D098093B}.Debug|Any CPU.Build.0 = Debug|x86
+		{A7C59985-392B-42CF-813F-32D4D098093B}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{A7C59985-392B-42CF-813F-32D4D098093B}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{A7C59985-392B-42CF-813F-32D4D098093B}.Debug|x86.ActiveCfg = Debug|x86
+		{A7C59985-392B-42CF-813F-32D4D098093B}.Debug|x86.Build.0 = Debug|x86
+		{A7C59985-392B-42CF-813F-32D4D098093B}.Release|Any CPU.ActiveCfg = Release|x86
+		{A7C59985-392B-42CF-813F-32D4D098093B}.Release|Any CPU.Build.0 = Release|x86
+		{A7C59985-392B-42CF-813F-32D4D098093B}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{A7C59985-392B-42CF-813F-32D4D098093B}.Release|Mixed Platforms.Build.0 = Release|x86
+		{A7C59985-392B-42CF-813F-32D4D098093B}.Release|x86.ActiveCfg = Release|x86
+		{A7C59985-392B-42CF-813F-32D4D098093B}.Release|x86.Build.0 = Release|x86
+		{CCD18CD0-079C-4A60-A7F1-90933DD14D37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD18CD0-079C-4A60-A7F1-90933DD14D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD18CD0-079C-4A60-A7F1-90933DD14D37}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CCD18CD0-079C-4A60-A7F1-90933DD14D37}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CCD18CD0-079C-4A60-A7F1-90933DD14D37}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CCD18CD0-079C-4A60-A7F1-90933DD14D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD18CD0-079C-4A60-A7F1-90933DD14D37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCD18CD0-079C-4A60-A7F1-90933DD14D37}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CCD18CD0-079C-4A60-A7F1-90933DD14D37}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CCD18CD0-079C-4A60-A7F1-90933DD14D37}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CCD18CD0-079C-4A60-A7F1-90933DD14D37} = {9A90CF10-81CD-44EC-870A-9A23BC9C7A97}
+		{278F624F-5C10-4563-BB17-5CA378D0965C} = {9A90CF10-81CD-44EC-870A-9A23BC9C7A97}
+		{A7C59985-392B-42CF-813F-32D4D098093B} = {9A90CF10-81CD-44EC-870A-9A23BC9C7A97}
+		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6} = {9A90CF10-81CD-44EC-870A-9A23BC9C7A97}
+		{A795F1E1-9357-430B-A86F-44DB614E595A} = {6266BABA-18D5-4C95-8175-74125AAE47F1}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MMCM\MMCMLibrary\MMCM.NET.csproj
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
