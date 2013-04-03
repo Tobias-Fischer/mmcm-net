@@ -520,11 +520,14 @@ namespace MMCMLibrary
 			 m_map.stopLoggingError();
 	   }
 
+       private void buttonSetParameters_Click(object sender, EventArgs e)
+       {
+           SetParameters(sender, e);
+       }
 
-
-
-
-
-
+       private void buttonGetParameters_Click(object sender, EventArgs e)
+       {
+           GetParameters(sender, e);
+       }
     }
 }
