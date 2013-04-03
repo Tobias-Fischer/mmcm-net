@@ -172,7 +172,7 @@ namespace MMCMLibrary
             cmd.addDouble(Convert.ToDouble(textBoxPeriod.Text));
             rpcOut.write(cmd, rep);
 
-            MessageBox.Show("Ok");
+            //MessageBox.Show("Ok");
         }
 
         private void buttonRun_Click(object sender, EventArgs e)
@@ -215,6 +215,16 @@ namespace MMCMLibrary
                     m_layers[i].Image = HelpersLib.ImageManipulation.toBmp(img);
                 }
             }
+        }
+
+        private void buttonGetParameters_Click(object sender, EventArgs e)
+        {
+            GetParameters(sender, e);
+        }
+
+        private void buttonSetParameters_Click(object sender, EventArgs e)
+        {
+            SetParameters(sender, e);
         }
     }
 }

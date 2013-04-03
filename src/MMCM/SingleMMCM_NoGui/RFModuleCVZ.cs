@@ -80,7 +80,7 @@ namespace SingleMMCM_NoGui
             string key = command.get(0).asString().c_str();
             switch (key)
             {
-                case "period": period = command.get(1).asInt(); break;
+                case "period": period = command.get(1).asInt(); reply.addString("period set"); break;
 
                 default: reply.addString("unknown parameter"); break;
             }

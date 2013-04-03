@@ -29,21 +29,30 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MMCM_ControlPanel));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.buttonRun = new System.Windows.Forms.Button();
             this.labelSteps = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageParameters = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBoxPeriod = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.buttonGetParameters = new System.Windows.Forms.Button();
             this.checkBoxLogError = new System.Windows.Forms.CheckBox();
+            this.buttonSetParameters = new System.Windows.Forms.Button();
             this.feedbakcTextBoxInfluence = new System.Windows.Forms.TextBox();
+            this.textBoxSigma = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxLearningRate = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.gridModalitiesParameters = new System.Windows.Forms.DataGridView();
             this.Columun_ModalityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_EnactionFactor = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,17 +86,9 @@
             this.buttonStop = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBoxLearningRate = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxSigma = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.buttonGetParameters = new System.Windows.Forms.Button();
-            this.buttonSetParameters = new System.Windows.Forms.Button();
-            this.textBoxPeriod = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageParameters.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridModalitiesParameters)).BeginInit();
             this.tabPageModalities.SuspendLayout();
             this.tabPageErrors.SuspendLayout();
@@ -97,7 +98,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.chartElectrodes)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonRun
@@ -158,6 +158,53 @@
             this.tabPageParameters.TabIndex = 0;
             this.tabPageParameters.Text = "Parameters";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.textBoxPeriod);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.buttonGetParameters);
+            this.groupBox2.Controls.Add(this.checkBoxLogError);
+            this.groupBox2.Controls.Add(this.buttonSetParameters);
+            this.groupBox2.Controls.Add(this.feedbakcTextBoxInfluence);
+            this.groupBox2.Controls.Add(this.textBoxSigma);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.textBoxLearningRate);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Location = new System.Drawing.Point(6, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(268, 133);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Parameters";
+            // 
+            // textBoxPeriod
+            // 
+            this.textBoxPeriod.Location = new System.Drawing.Point(6, 104);
+            this.textBoxPeriod.Name = "textBoxPeriod";
+            this.textBoxPeriod.Size = new System.Drawing.Size(30, 20);
+            this.textBoxPeriod.TabIndex = 20;
+            this.textBoxPeriod.Text = "1,0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(41, 107);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(37, 13);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Period";
+            // 
+            // buttonGetParameters
+            // 
+            this.buttonGetParameters.Location = new System.Drawing.Point(167, 41);
+            this.buttonGetParameters.Name = "buttonGetParameters";
+            this.buttonGetParameters.Size = new System.Drawing.Size(95, 23);
+            this.buttonGetParameters.TabIndex = 18;
+            this.buttonGetParameters.Text = "Get parameters";
+            this.buttonGetParameters.UseVisualStyleBackColor = true;
+            this.buttonGetParameters.Click += new System.EventHandler(this.buttonGetParameters_Click);
+            // 
             // checkBoxLogError
             // 
             this.checkBoxLogError.AutoSize = true;
@@ -171,6 +218,16 @@
             this.checkBoxLogError.UseVisualStyleBackColor = true;
             this.checkBoxLogError.CheckedChanged += new System.EventHandler(this.checkBoxLogError_CheckedChanged);
             // 
+            // buttonSetParameters
+            // 
+            this.buttonSetParameters.Location = new System.Drawing.Point(167, 70);
+            this.buttonSetParameters.Name = "buttonSetParameters";
+            this.buttonSetParameters.Size = new System.Drawing.Size(95, 23);
+            this.buttonSetParameters.TabIndex = 17;
+            this.buttonSetParameters.Text = "Set parameters";
+            this.buttonSetParameters.UseVisualStyleBackColor = true;
+            this.buttonSetParameters.Click += new System.EventHandler(this.buttonSetParameters_Click);
+            // 
             // feedbakcTextBoxInfluence
             // 
             this.feedbakcTextBoxInfluence.Location = new System.Drawing.Point(6, 75);
@@ -178,6 +235,14 @@
             this.feedbakcTextBoxInfluence.Size = new System.Drawing.Size(30, 20);
             this.feedbakcTextBoxInfluence.TabIndex = 12;
             this.feedbakcTextBoxInfluence.Text = "1,0";
+            // 
+            // textBoxSigma
+            // 
+            this.textBoxSigma.Location = new System.Drawing.Point(6, 45);
+            this.textBoxSigma.Name = "textBoxSigma";
+            this.textBoxSigma.Size = new System.Drawing.Size(30, 20);
+            this.textBoxSigma.TabIndex = 16;
+            this.textBoxSigma.Text = "1,0";
             // 
             // label1
             // 
@@ -187,6 +252,32 @@
             this.label1.Size = new System.Drawing.Size(102, 13);
             this.label1.TabIndex = 11;
             this.label1.Text = "Feedback Influence";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(41, 48);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(112, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Sigma (Neighborhood)";
+            // 
+            // textBoxLearningRate
+            // 
+            this.textBoxLearningRate.Location = new System.Drawing.Point(6, 19);
+            this.textBoxLearningRate.Name = "textBoxLearningRate";
+            this.textBoxLearningRate.Size = new System.Drawing.Size(30, 20);
+            this.textBoxLearningRate.TabIndex = 14;
+            this.textBoxLearningRate.Text = "1,0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(41, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Learning Rate";
             // 
             // gridModalitiesParameters
             // 
@@ -300,23 +391,23 @@
             // 
             // chartPredictionError
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartPredictionError.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartPredictionError.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chartPredictionError.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartPredictionError.Legends.Add(legend3);
             this.chartPredictionError.Location = new System.Drawing.Point(133, 6);
             this.chartPredictionError.Name = "chartPredictionError";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartPredictionError.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartPredictionError.Series.Add(series3);
             this.chartPredictionError.Size = new System.Drawing.Size(297, 242);
             this.chartPredictionError.TabIndex = 0;
             this.chartPredictionError.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            title1.Name = "Title1";
-            title1.Text = "Prediction Error";
-            this.chartPredictionError.Titles.Add(title1);
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            title2.Name = "Title1";
+            title2.Text = "Prediction Error";
+            this.chartPredictionError.Titles.Add(title2);
             // 
             // tabPageElectrodes
             // 
@@ -396,16 +487,16 @@
             // 
             // chartElectrodes
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartElectrodes.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartElectrodes.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.chartElectrodes.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartElectrodes.Legends.Add(legend4);
             this.chartElectrodes.Location = new System.Drawing.Point(9, 110);
             this.chartElectrodes.Name = "chartElectrodes";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartElectrodes.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chartElectrodes.Series.Add(series4);
             this.chartElectrodes.Size = new System.Drawing.Size(470, 196);
             this.chartElectrodes.TabIndex = 5;
             this.chartElectrodes.Text = "chart1";
@@ -529,95 +620,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.textBoxPeriod);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.buttonGetParameters);
-            this.groupBox2.Controls.Add(this.checkBoxLogError);
-            this.groupBox2.Controls.Add(this.buttonSetParameters);
-            this.groupBox2.Controls.Add(this.feedbakcTextBoxInfluence);
-            this.groupBox2.Controls.Add(this.textBoxSigma);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBoxLearningRate);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(6, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(268, 133);
-            this.groupBox2.TabIndex = 13;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Parameters";
-            // 
-            // textBoxLearningRate
-            // 
-            this.textBoxLearningRate.Location = new System.Drawing.Point(6, 19);
-            this.textBoxLearningRate.Name = "textBoxLearningRate";
-            this.textBoxLearningRate.Size = new System.Drawing.Size(30, 20);
-            this.textBoxLearningRate.TabIndex = 14;
-            this.textBoxLearningRate.Text = "1,0";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(41, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 13);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Learning Rate";
-            // 
-            // textBoxSigma
-            // 
-            this.textBoxSigma.Location = new System.Drawing.Point(6, 45);
-            this.textBoxSigma.Name = "textBoxSigma";
-            this.textBoxSigma.Size = new System.Drawing.Size(30, 20);
-            this.textBoxSigma.TabIndex = 16;
-            this.textBoxSigma.Text = "1,0";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(41, 48);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(112, 13);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Sigma (Neighborhood)";
-            // 
-            // buttonGetParameters
-            // 
-            this.buttonGetParameters.Location = new System.Drawing.Point(167, 41);
-            this.buttonGetParameters.Name = "buttonGetParameters";
-            this.buttonGetParameters.Size = new System.Drawing.Size(95, 23);
-            this.buttonGetParameters.TabIndex = 18;
-            this.buttonGetParameters.Text = "Get parameters";
-            this.buttonGetParameters.UseVisualStyleBackColor = true;
-            // 
-            // buttonSetParameters
-            // 
-            this.buttonSetParameters.Location = new System.Drawing.Point(167, 70);
-            this.buttonSetParameters.Name = "buttonSetParameters";
-            this.buttonSetParameters.Size = new System.Drawing.Size(95, 23);
-            this.buttonSetParameters.TabIndex = 17;
-            this.buttonSetParameters.Text = "Set parameters";
-            this.buttonSetParameters.UseVisualStyleBackColor = true;
-            // 
-            // textBoxPeriod
-            // 
-            this.textBoxPeriod.Location = new System.Drawing.Point(6, 104);
-            this.textBoxPeriod.Name = "textBoxPeriod";
-            this.textBoxPeriod.Size = new System.Drawing.Size(30, 20);
-            this.textBoxPeriod.TabIndex = 20;
-            this.textBoxPeriod.Text = "1,0";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(41, 107);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 13);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "Period";
-            // 
             // MMCM_ControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -635,6 +637,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MMCM_ControlPanel_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPageParameters.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridModalitiesParameters)).EndInit();
             this.tabPageModalities.ResumeLayout(false);
             this.tabPageErrors.ResumeLayout(false);
@@ -648,8 +652,6 @@
             this.groupBox3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
