@@ -18,6 +18,11 @@ namespace MMCMLibrary
             return value;
         }
 
+        public static float EuclideanDistance(float a, float b)
+        {
+            return (float)Math.Sqrt(Math.Pow(a - b, 2.0));
+        }
+
         public static float GaussianBell(float x, float sigma)
         {
             return
