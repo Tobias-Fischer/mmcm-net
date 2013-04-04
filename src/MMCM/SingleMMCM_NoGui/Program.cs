@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MMCMLibrary;
 
 
 namespace SingleMMCM_NoGui
 {
     class Program
     {
-        
-
         static void Main(string[] args)
         {
             Network.init();
@@ -35,9 +34,28 @@ namespace SingleMMCM_NoGui
             SVector argsVect = new SVector(args);
             rf.configure("MMCM_ROOT", argsVect);
 
-            RFModuleMMCM module = new RFModuleMMCM();
-            module.configure(rf);
-            module.runModule();
+            string mapType = CVZFactory.GetCvzType(rf);
+            switch (mapType)
+            {
+                case "MMCM":
+                    {
+                        RFModuleMMCM module = new RFModuleMMCM();
+                        module.configure(rf);
+                        module.runModule();
+                        break;
+                    }
+
+                case "CTPC":
+                    {
+                        RFModuleCTPC module = new RFModuleCTPC();
+                        module.configure(rf);
+                        module.runModule();
+                        break;
+                    }
+                default:
+                    throw new Exception("Unknown CVZ type");
+            }
+
         }
     }
 }

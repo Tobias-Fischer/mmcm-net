@@ -5,11 +5,18 @@ using System.Text;
 using MMCMLibrary.Modalities;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using MMCMLibrary.CVZ.CTPC;
 
 namespace MMCMLibrary
 {
     public class CVZFactory
     {
+        public static string GetCvzType(ResourceFinder rf)
+        {
+            string mapType = rf.check("mapType", new Value("MMCM")).asString().c_str();
+            return mapType;
+        }
+
         public static IConvergenceZone Create(string path)
         {
             IConvergenceZone m = null;
@@ -25,18 +32,19 @@ namespace MMCMLibrary
             IConvergenceZone cvz = null;
             string mapType = rf.check("mapType", new Value("MMCM")).asString().c_str();
 		    string mapName = rf.check("mapName", new Value("defaultMap")).asString().c_str();
-		    bool hSynch = rf.check("hsync");
-            int w = rf.check("width", new Value(10)).asInt();
-            int h = rf.check("height", new Value(10)).asInt();
-            int l = rf.check("layers", new Value(4)).asInt();
-            Console.WriteLine("Map " + mapName + " (" + mapType + ")");
-		    Console.WriteLine("Shape " + l + "x(" + w + "x" + h + ")");
-		    Console.WriteLine("HSynch= " + hSynch);
 
             switch (mapType)
             {
                 case "MMCM":
                     {
+                        bool hSynch = rf.check("hsync");
+                        int w = rf.check("width", new Value(10)).asInt();
+                        int h = rf.check("height", new Value(10)).asInt();
+                        int l = rf.check("layers", new Value(4)).asInt();
+                        Console.WriteLine("Map " + mapName + " (" + mapType + ")");
+                        Console.WriteLine("Shape " + l + "x(" + w + "x" + h + ")");
+                        Console.WriteLine("HSynch= " + hSynch);
+
 				    cvz = new CVZ_MMCM(mapName, h, w, l, hSynch);
                         float learningRate = (float)rf.check("learningRate", new Value(0.07f)).asDouble();
                         float sigma = (float)rf.check("sigma", new Value((float)((1 / 4.0) * (w + h) / 2.0))).asDouble();
@@ -47,6 +55,21 @@ namespace MMCMLibrary
                         break;
                     }
 
+                case "CTPC":
+                    {
+                        bool hSynch = rf.check("hsync");
+                        int w = rf.check("width", new Value(10)).asInt();
+                        int h = rf.check("height", new Value(10)).asInt();
+                        double neighborRadius = rf.check("radius", new Value(7.0)).asDouble();
+                        double connectivity = rf.check("connectivity", new Value(1.0)).asDouble();
+
+                        Console.WriteLine("Radius= " + neighborRadius);
+                        Console.WriteLine("Connectivity= " + connectivity);
+                        Console.WriteLine("Map " + mapName + " (" + mapType + ")");
+                        Console.WriteLine("HSynch= " + hSynch);
+                        cvz = new CVZ_TPC(mapName, h, w,neighborRadius,connectivity, hSynch);
+                        break;
+                    }
                 //case "MMCM_GPU":
                 //    {
                 //        cvz = new CVZ_MMCM_GPU(mapName, h, w, l);
@@ -68,7 +91,6 @@ namespace MMCMLibrary
             {
                 Console.WriteLine("Map created. Adding modalities...");
             }
-
 
             int modalityCount = rf.check("modalityCount", new Value(0)).asInt();
             for (int i = 0; i < modalityCount; i++)

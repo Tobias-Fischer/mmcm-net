@@ -218,7 +218,6 @@ namespace MMCMLibrary
             //this can be executed only one time if the influence doesn't change over time
             //(to save computation time)
             float influenceSum = 0;
-            int activeModalities = 0;
             foreach (KeyValuePair<string, float> influence in modalitiesInfluence)
             {
                 influenceSum += influence.Value;

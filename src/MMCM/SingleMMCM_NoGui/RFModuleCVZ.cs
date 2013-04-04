@@ -15,6 +15,7 @@ namespace SingleMMCM_NoGui
         private Port rpc = new Port();
         private int period; //ms
         private bool isRunning = false;
+        private bool broadcastDisplay;
 
         public override bool configure(ResourceFinder rf)
         {
@@ -24,6 +25,7 @@ namespace SingleMMCM_NoGui
 
             bool loadingFromWeights = rf.check("load");
             period = rf.check("period", new Value(100)).asInt();
+            broadcastDisplay = !rf.check("noDisplay");
             Console.Write("Running every " + period + " ms");
 
             if (loadingFromWeights)
@@ -96,6 +98,11 @@ namespace SingleMMCM_NoGui
             }
         }
 
+        public override double getPeriod()
+        {
+            return period / 1000.0;
+        }
+
         public override bool updateModule()
         { 
             double t1 = Time.now();
@@ -105,15 +112,16 @@ namespace SingleMMCM_NoGui
             }
             double t2 = Time.now();
 
-            double timeToSleep = period - (t2 - t1);
+            //Console.WriteLine("StepTime" + (t2 - t1).ToString());
+            double timeToSleep = period/1000.0 - (t2 - t1);
             if (timeToSleep <= 0)
             {
                 Console.WriteLine("Impossible to match desired period. Execution time is: " + (t2 - t1).ToString());
             }
-            else
-            {
-                Time.delay(timeToSleep / 1000.0);
-            }
+            //else
+            //{
+            //    Time.delay(timeToSleep / 1000.0);
+            //}
             return true;
         }
     }
