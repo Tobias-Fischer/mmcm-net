@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MMCMLibrary
+namespace HelpersLib
 {
-    class MathFunctions
+    public class MathFunctions
     {
+        public static double Clamp(double value, double min, double max)
+        {
+            return Math.Max(min, Math.Min(max, value));
+        }
+
         public static float EuclideanDistance(float[] a, float[] b)
         {
             float value = 0;
@@ -36,11 +41,21 @@ namespace MMCMLibrary
         {
             return
                 (float)(
-                    1/(Math.Sqrt(2*Math.PI*Math.Pow(sigma,3.0))) *
-                    (1 - Math.Pow(x,2.0) / Math.Pow(sigma,2.0))  *
-                    Math.Exp( -Math.Pow(x,2.0) / (2*Math.Pow(sigma,2.0)))
+                    (2 / (Math.Sqrt(3 * sigma * Math.Pow(Math.PI, 1/4.0)))) *
+                    (1 - Math.Pow(x, 2.0) / Math.Pow(sigma, 2.0)) *
+                    Math.Exp(-Math.Pow(x, 2.0) / (2 * Math.Pow(sigma, 2.0)))
                 );
         }
+
+        //public static float MexicanHat(float x, float sigma)
+        //{
+        //    return
+        //        (float)(
+        //            1/(Math.Sqrt(2*Math.PI*Math.Pow(sigma,3.0))) *
+        //            (1 - Math.Pow(x,2.0) / Math.Pow(sigma,2.0))  *
+        //            Math.Exp( -Math.Pow(x,2.0) / (2*Math.Pow(sigma,2.0)))
+        //        );
+        //}
 
     }
 }

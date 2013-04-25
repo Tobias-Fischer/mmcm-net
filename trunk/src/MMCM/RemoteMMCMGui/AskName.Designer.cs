@@ -50,27 +50,27 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(100, 20);
             this.txtName.TabIndex = 1;
-            this.txtName.Text = "defaultMap";
+            this.txtName.Text = "ctpc_head";
             // 
             // radioButtonMMCM
             // 
             this.radioButtonMMCM.AutoSize = true;
-            this.radioButtonMMCM.Checked = true;
             this.radioButtonMMCM.Location = new System.Drawing.Point(12, 39);
             this.radioButtonMMCM.Name = "radioButtonMMCM";
             this.radioButtonMMCM.Size = new System.Drawing.Size(59, 17);
             this.radioButtonMMCM.TabIndex = 2;
-            this.radioButtonMMCM.TabStop = true;
             this.radioButtonMMCM.Text = "MMCM";
             this.radioButtonMMCM.UseVisualStyleBackColor = true;
             // 
             // radioButtonCTPC
             // 
             this.radioButtonCTPC.AutoSize = true;
+            this.radioButtonCTPC.Checked = true;
             this.radioButtonCTPC.Location = new System.Drawing.Point(77, 39);
             this.radioButtonCTPC.Name = "radioButtonCTPC";
             this.radioButtonCTPC.Size = new System.Drawing.Size(53, 17);
             this.radioButtonCTPC.TabIndex = 3;
+            this.radioButtonCTPC.TabStop = true;
             this.radioButtonCTPC.Text = "CTPC";
             this.radioButtonCTPC.UseVisualStyleBackColor = true;
             // 

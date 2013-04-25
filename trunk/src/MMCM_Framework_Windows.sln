@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleMMCM_NoGui", "MMCM\Si
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteMMCMGui", "MMCM\RemoteMMCMGui\RemoteMMCMGui.csproj", "{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Garbage", "Garbage", "{149123F1-46E1-4B3E-9F95-1E2BD6C4E8E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{77DFB1E7-ED10-438C-97CB-EAE62A29A06C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +103,16 @@ Global
 		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Release|Mixed Platforms.Build.0 = Release|x86
 		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Release|x86.ActiveCfg = Release|x86
 		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6}.Release|x86.Build.0 = Release|x86
+		{77DFB1E7-ED10-438C-97CB-EAE62A29A06C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{77DFB1E7-ED10-438C-97CB-EAE62A29A06C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{77DFB1E7-ED10-438C-97CB-EAE62A29A06C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{77DFB1E7-ED10-438C-97CB-EAE62A29A06C}.Debug|x86.ActiveCfg = Debug|x86
+		{77DFB1E7-ED10-438C-97CB-EAE62A29A06C}.Debug|x86.Build.0 = Debug|x86
+		{77DFB1E7-ED10-438C-97CB-EAE62A29A06C}.Release|Any CPU.ActiveCfg = Release|x86
+		{77DFB1E7-ED10-438C-97CB-EAE62A29A06C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{77DFB1E7-ED10-438C-97CB-EAE62A29A06C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{77DFB1E7-ED10-438C-97CB-EAE62A29A06C}.Release|x86.ActiveCfg = Release|x86
+		{77DFB1E7-ED10-438C-97CB-EAE62A29A06C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,6 +125,7 @@ Global
 		{A7C59985-392B-42CF-813F-32D4D098093B} = {9A90CF10-81CD-44EC-870A-9A23BC9C7A97}
 		{6FA9F560-33FC-4CA7-A385-6A5F6C3FADC6} = {9A90CF10-81CD-44EC-870A-9A23BC9C7A97}
 		{A795F1E1-9357-430B-A86F-44DB614E595A} = {6266BABA-18D5-4C95-8175-74125AAE47F1}
+		{77DFB1E7-ED10-438C-97CB-EAE62A29A06C} = {149123F1-46E1-4B3E-9F95-1E2BD6C4E8E1}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MMCM\MMCMLibrary\MMCM.NET.csproj

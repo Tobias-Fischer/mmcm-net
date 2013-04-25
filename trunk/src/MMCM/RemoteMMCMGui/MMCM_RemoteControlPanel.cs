@@ -32,7 +32,7 @@ namespace MMCMLibrary
 
             updateTimer = new Timer();
             updateTimer.Tick += new EventHandler(timer_Tick); // Everytime timer ticks, timer_Tick will be called
-            updateTimer.Interval = 500;             // Timer will tick evert 50 seconds
+            updateTimer.Interval = 10;             // Timer will tick evert 10 mseconds
             updateTimer.Enabled = true;                       // Enable the timer
             updateTimer.Start();  
         }
@@ -139,7 +139,11 @@ namespace MMCMLibrary
             rpcOut.write(cmd, rep);
             textBoxPeriod.Text = rep.get(0).asInt().ToString();
 
-            feedbakcTextBoxInfluence.Text = "???";
+            cmd.clear(); rep.clear();
+            cmd.addString("get");
+            cmd.addString("fbInf");
+            rpcOut.write(cmd, rep);
+            feedbakcTextBoxInfluence.Text = rep.get(0).asDouble().ToString();
 
             //Map infos
             labelMapInfo.Text =
@@ -172,6 +176,10 @@ namespace MMCMLibrary
             cmd.addDouble(Convert.ToDouble(textBoxPeriod.Text));
             rpcOut.write(cmd, rep);
 
+            cmd.clear(); rep.clear();
+            cmd.addString("set");
+            cmd.addString("fbInf");
+            cmd.addDouble(Convert.ToDouble(feedbakcTextBoxInfluence.Text));
             //MessageBox.Show("Ok");
         }
 

@@ -11,14 +11,16 @@ namespace SingleMMCM_NoGui
     public class RFModuleCVZ: RFModule
     {
         protected IConvergenceZone cvz = null;
-
         private Port rpc = new Port();
         private int period; //ms
+        private float enactionFactor = 0.0f;
+        private double lastUpdateTime = 0.0;
         private bool isRunning = false;
         private bool broadcastDisplay;
 
         public override bool configure(ResourceFinder rf)
         {
+            Time.turboBoost();
             Console.WriteLine("----------------------------------");
             Console.WriteLine("Convergence Divergence Zone Module");
             Console.WriteLine("----------------------------------");
@@ -83,6 +85,7 @@ namespace SingleMMCM_NoGui
             switch (key)
             {
                 case "period": period = command.get(1).asInt(); reply.addString("period set"); break;
+                case "fbInf": cvz.feedbackInfluence = command.get(1).asInt(); reply.addString("feedback Inf. set"); break;
 
                 default: reply.addString("unknown parameter"); break;
             }
@@ -94,6 +97,8 @@ namespace SingleMMCM_NoGui
             switch (key)
             {
                 case "period": reply.addInt(period); break;
+                case "fbInf": reply.addDouble(cvz.feedbackInfluence); break;
+
                 default: reply.addString("unknown parameter"); break;
             }
         }
@@ -104,24 +109,20 @@ namespace SingleMMCM_NoGui
         }
 
         public override bool updateModule()
-        { 
-            double t1 = Time.now();
+        {
+            double currentTime = Time.now(); 
+            double executionTime = Math.Round(currentTime - lastUpdateTime);
+            lastUpdateTime = currentTime;
+            if ( executionTime > period / 1000.0)
+            {
+                Console.WriteLine("Impossible to match desired period (" + period / 1000.0 +"). Execution time is: " + executionTime);
+            }
+
             if (isRunning)
             {
-                cvz.Step();
+                cvz.Step(enactionFactor);
             }
-            double t2 = Time.now();
 
-            //Console.WriteLine("StepTime" + (t2 - t1).ToString());
-            double timeToSleep = period/1000.0 - (t2 - t1);
-            if (timeToSleep <= 0)
-            {
-                Console.WriteLine("Impossible to match desired period. Execution time is: " + (t2 - t1).ToString());
-            }
-            //else
-            //{
-            //    Time.delay(timeToSleep / 1000.0);
-            //}
             return true;
         }
     }

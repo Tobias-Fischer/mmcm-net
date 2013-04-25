@@ -31,7 +31,7 @@ namespace MMCMLibrary
 
             updateTimer = new Timer();
             updateTimer.Tick += new EventHandler(timer_Tick); // Everytime timer ticks, timer_Tick will be called
-            updateTimer.Interval = 500;             // Timer will tick evert 50 seconds
+            updateTimer.Interval = 10;             // Timer will tick evert 10 msseconds
             updateTimer.Enabled = true;                       // Enable the timer
             updateTimer.Start();  
         }
@@ -90,11 +90,68 @@ namespace MMCMLibrary
 
         private void GetParameters(object sender, EventArgs e)
         {
-  
+            Bottle cmd = new Bottle();
+            Bottle rep = new Bottle();
+
+            cmd.clear(); rep.clear();
+            cmd.addString("get");
+            cmd.addString("w");
+            rpcOut.write(cmd, rep);
+            r_w = rep.get(0).asInt();
+
+            cmd.clear(); rep.clear();
+            cmd.addString("get");
+            cmd.addString("h");
+            rpcOut.write(cmd, rep);
+            r_h = rep.get(0).asInt();
+
+            cmd.clear(); rep.clear();
+            cmd.addString("get");
+            cmd.addString("lrate");
+            rpcOut.write(cmd, rep);
+            textBoxLearningRate.Text = rep.get(0).asDouble().ToString();
+
+            cmd.clear(); rep.clear();
+            cmd.addString("get");
+            cmd.addString("period");
+            rpcOut.write(cmd, rep);
+            textBoxPeriod.Text = rep.get(0).asInt().ToString();
+
+            cmd.clear(); rep.clear();
+            cmd.addString("get");
+            cmd.addString("fbInf");
+            rpcOut.write(cmd, rep);
+            feedbakcTextBoxInfluence.Text = rep.get(0).asDouble().ToString();
+
+            //Map infos
+            labelMapInfo.Text =
+                "Map infos: " +
+                "Width = " + r_w + " " +
+                "Height = " + r_h + " ";
         }
 
         private void SetParameters(object sender, EventArgs e)
         {
+            Bottle cmd = new Bottle();
+            Bottle rep = new Bottle();
+
+            cmd.clear(); rep.clear();
+            cmd.addString("set");
+            cmd.addString("lrate");
+            cmd.addDouble(Convert.ToDouble(textBoxLearningRate.Text));
+            rpcOut.write(cmd, rep);
+
+            cmd.clear(); rep.clear();
+            cmd.addString("set");
+            cmd.addString("period");
+            cmd.addDouble(Convert.ToDouble(textBoxPeriod.Text));
+            rpcOut.write(cmd, rep); 
+            
+            cmd.clear(); rep.clear();
+            cmd.addString("set");
+            cmd.addString("fbInf");
+            cmd.addDouble(Convert.ToDouble(feedbakcTextBoxInfluence.Text));
+            rpcOut.write(cmd, rep);
         }
 
         private void buttonRun_Click(object sender, EventArgs e)

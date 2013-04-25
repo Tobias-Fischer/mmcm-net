@@ -61,13 +61,11 @@ namespace MMCMLibrary
                         int w = rf.check("width", new Value(10)).asInt();
                         int h = rf.check("height", new Value(10)).asInt();
                         double neighborRadius = rf.check("radius", new Value(7.0)).asDouble();
-                        double connectivity = rf.check("connectivity", new Value(1.0)).asDouble();
 
                         Console.WriteLine("Radius= " + neighborRadius);
-                        Console.WriteLine("Connectivity= " + connectivity);
                         Console.WriteLine("Map " + mapName + " (" + mapType + ")");
                         Console.WriteLine("HSynch= " + hSynch);
-                        cvz = new CVZ_TPC(mapName, h, w,neighborRadius,connectivity, hSynch);
+                        cvz = new CVZ_TPC(mapName, w, h,neighborRadius, hSynch);
                         break;
                     }
                 //case "MMCM_GPU":
