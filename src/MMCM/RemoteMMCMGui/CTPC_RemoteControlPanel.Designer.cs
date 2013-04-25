@@ -28,13 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MMCM_RemoteControlPanel));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CTPC_RemoteControlPanel));
             this.buttonRun = new System.Windows.Forms.Button();
             this.labelSteps = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonStop = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.buttonGetParameters = new System.Windows.Forms.Button();
+            this.buttonSetParameters = new System.Windows.Forms.Button();
+            this.textBoxPeriod = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.feedbakcTextBoxInfluence = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxLearningRate = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.labelMapInfo = new System.Windows.Forms.Label();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonRun
@@ -82,12 +91,91 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.buttonGetParameters);
+            this.groupBox2.Controls.Add(this.buttonSetParameters);
+            this.groupBox2.Controls.Add(this.textBoxPeriod);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.feedbakcTextBoxInfluence);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.textBoxLearningRate);
+            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Location = new System.Drawing.Point(12, 234);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(268, 133);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Parameters";
+            // 
+            // buttonGetParameters
+            // 
+            this.buttonGetParameters.Location = new System.Drawing.Point(167, 17);
+            this.buttonGetParameters.Name = "buttonGetParameters";
+            this.buttonGetParameters.Size = new System.Drawing.Size(95, 23);
+            this.buttonGetParameters.TabIndex = 28;
+            this.buttonGetParameters.Text = "Get parameters";
+            this.buttonGetParameters.UseVisualStyleBackColor = true;
+            this.buttonGetParameters.Click += new System.EventHandler(this.buttonGetParameters_Click);
+            // 
+            // buttonSetParameters
+            // 
+            this.buttonSetParameters.Location = new System.Drawing.Point(167, 46);
+            this.buttonSetParameters.Name = "buttonSetParameters";
+            this.buttonSetParameters.Size = new System.Drawing.Size(95, 23);
+            this.buttonSetParameters.TabIndex = 27;
+            this.buttonSetParameters.Text = "Set parameters";
+            this.buttonSetParameters.UseVisualStyleBackColor = true;
+            this.buttonSetParameters.Click += new System.EventHandler(this.buttonSetParameters_Click);
+            // 
+            // textBoxPeriod
+            // 
+            this.textBoxPeriod.Location = new System.Drawing.Point(6, 61);
+            this.textBoxPeriod.Name = "textBoxPeriod";
+            this.textBoxPeriod.Size = new System.Drawing.Size(30, 20);
+            this.textBoxPeriod.TabIndex = 26;
+            this.textBoxPeriod.Text = "1,0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(41, 64);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(37, 13);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Period";
+            // 
+            // feedbakcTextBoxInfluence
+            // 
+            this.feedbakcTextBoxInfluence.Location = new System.Drawing.Point(6, 39);
+            this.feedbakcTextBoxInfluence.Name = "feedbakcTextBoxInfluence";
+            this.feedbakcTextBoxInfluence.Size = new System.Drawing.Size(30, 20);
+            this.feedbakcTextBoxInfluence.TabIndex = 22;
+            this.feedbakcTextBoxInfluence.Text = "1,0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(41, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Feedback Influence";
+            // 
+            // textBoxLearningRate
+            // 
+            this.textBoxLearningRate.Location = new System.Drawing.Point(6, 19);
+            this.textBoxLearningRate.Name = "textBoxLearningRate";
+            this.textBoxLearningRate.Size = new System.Drawing.Size(30, 20);
+            this.textBoxLearningRate.TabIndex = 24;
+            this.textBoxLearningRate.Text = "1,0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(41, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 13);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Learning Rate";
             // 
             // labelMapInfo
             // 
@@ -98,7 +186,7 @@
             this.labelMapInfo.TabIndex = 15;
             this.labelMapInfo.Text = "Map Infos: ";
             // 
-            // MMCM_RemoteControlPanel
+            // CTPC_RemoteControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -109,8 +197,10 @@
             this.Controls.Add(this.buttonStop);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelSteps);
-            this.Name = "MMCM_RemoteControlPanel";
+            this.Name = "CTPC_RemoteControlPanel";
             this.Text = "CTPC_ControlPanel";
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,6 +214,14 @@
         private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label labelMapInfo;
+        private System.Windows.Forms.TextBox textBoxPeriod;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox feedbakcTextBoxInfluence;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxLearningRate;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonGetParameters;
+        private System.Windows.Forms.Button buttonSetParameters;
 
     }
 }

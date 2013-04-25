@@ -49,6 +49,7 @@ namespace SingleMMCM_NoGui
             string key = command.get(0).asString().c_str();
             switch (key)
             {
+                case "lrate": (cvz as CVZ_TPC).LearningRate = (float)command.get(1).asDouble(); reply.addString("ack"); break;
                 default: base.set(command, reply); break;
             }
         }
@@ -58,6 +59,7 @@ namespace SingleMMCM_NoGui
             string key = command.get(0).asString().c_str();
             switch (key)
             {
+                case "lrate": reply.addDouble((cvz as CVZ_TPC).LearningRate); break;
                 default: base.get(command, reply); break;
             }
         }

@@ -53,7 +53,7 @@ namespace MMCMLibrary
             if (m_mapThread == null)
             {
                 m_mapThread = new System.Threading.Thread(StimulateMap);
-                m_mapThread.Start();
+                //m_mapThread.Start();
             }
 
             if (m_mapThread.ThreadState == System.Threading.ThreadState.Running)

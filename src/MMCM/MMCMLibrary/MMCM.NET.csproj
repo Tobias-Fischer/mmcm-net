@@ -83,7 +83,6 @@
     <Compile Include="Modalities\FileModality.cs" />
     <Compile Include="Modalities\IModality.cs" />
     <Compile Include="CVZ\IConvergenceZone.cs" />
-    <Compile Include="MathFunctions.cs" />
     <Compile Include="CVZ\MMCM\CVZ_MMCM.cs" />
     <Compile Include="Modalities\YarpModalityImageRgb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

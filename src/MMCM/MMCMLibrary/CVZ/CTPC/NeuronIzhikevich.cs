@@ -28,9 +28,9 @@ namespace MMCMLibrary.CVZ.CTPC
             /// <summary>
             /// The neuron targeted
             /// </summary>
-            private NeuronIzhikevich target;
+            public NeuronIzhikevich target;
 
-            public Connection(ref NeuronIzhikevich target, double transmitionDelay, double w)
+            public Connection(NeuronIzhikevich target, double transmitionDelay, double w)
             {
                 this.target = target;
                 this.w = w;
@@ -71,22 +71,50 @@ namespace MMCMLibrary.CVZ.CTPC
 
             /// <summary>
             /// Propagate a portion of activity measuring the similarity between the weight and an origin input, with an overall
-            /// factor originating from the modality influence
+            /// factor originating from the modality influence / modalitysize
             /// </summary>
             /// <param name="originInput"></param>
-            public double propagateSimilarity(double originInput, double modalityInfluence = 1.0)
+            public double propagateSimilarity(double originInput, double factor = 1.0)
             {
-                double p = ( 1 - (w - originInput) ) * modalityInfluence;
-                p = Math.Min(1.0, Math.Max(0.0, p));
+                double p = (1 - Math.Abs(w - originInput)) * factor;
+                p = Math.Min(1.0, Math.Max(0.0, p)); // Just to be sure
                 target.stimulus += p;
                 return p;
             }
         }
 
         /// <summary>
-        /// A list of all the projections of this neuron
+        /// Is the frequency calculation on?
         /// </summary>
-        public List<Connection> projections;
+        public bool frequency_calculation_on = false;
+        /// <summary>
+        /// Used to store the spiking behavior in a window to calculate spiking frequency
+        /// </summary>
+        private bool[] frequency_calculation_buffer;
+        /// <summary>
+        /// size of the freq. calculation buffer
+        /// </summary>
+        private const int frequency_calculation_buffer_size = 100;
+
+        /// <summary>
+        /// Position on the map, for debugging purposes
+        /// </summary>
+        public int tag_x;
+
+        /// <summary>
+        ///  Position on the map, for debugging purposes
+        /// </summary>
+        public int tag_y;
+
+        /// <summary>
+        /// A list of all the lateral projections of this neuron
+        /// </summary>
+        public List<Connection> lateralProjections;
+
+        /// <summary>
+        /// A list of all the input coming in this neurons (not taking into account lateral ones)
+        /// </summary>
+        public List<Connection> inputsConnections;
 
         /// <summary>
         /// Time scale of the recovery variable u
@@ -129,6 +157,12 @@ namespace MMCMLibrary.CVZ.CTPC
         /// </summary>
         public double stimulus;
 
+        private bool hasJustSpiked = false;
+        /// <summary>
+        /// Did the neuron spiked last update?
+        /// </summary>
+        public bool HasJustSpiked { get { return hasJustSpiked; } }
+
         public NeuronIzhikevich(double spikingTreshold = 30.0, double a = 0.02, double b = 0.2, double c = -65.0, double d = 2.0)
         {
             v = 0.0;
@@ -138,7 +172,10 @@ namespace MMCMLibrary.CVZ.CTPC
             this.b = b;
             this.c = c;
             this.d = d;
-            projections = new List<Connection>();
+            lateralProjections = new List<Connection>();
+            inputsConnections = new List<Connection>();
+
+            frequency_calculation_buffer = new bool[frequency_calculation_buffer_size];
         }
 
         /// <summary>
@@ -147,21 +184,56 @@ namespace MMCMLibrary.CVZ.CTPC
         /// <returns>Did the neuron spiked</returns>
         public bool update()
         {
-            v = v + (0.04 * Math.Pow(v, 2.0) + 5.0 * v + 140.0 - u + stimulus);
+            bool doesSpike = false;
+
+            //Calculate membrane potential
+            hasJustSpiked = false;
+            v = v + (0.04 * Math.Pow(v, 2.0) + 5.0 * v + 140.0 - u + stimulus * spikingTreshold);
             u = u + a * (b * v - u);
 
+            //Console.WriteLine("Neuron Stimulus: " + stimulus); 
+            //Reset the stimulus for the next update
+            stimulus = 0.0;
+
+            //Spikes or not
             if (v > spikingTreshold)
             {
+                hasJustSpiked = true;
                 v = c;
                 u = u + d;
-                Parallel.ForEach(projections, to =>
+                Parallel.ForEach(lateralProjections, to =>
                     {
                         to.loadSpike();
                     });
-                return true;
+                doesSpike = true;
             }
             else
-                return false;
+                doesSpike = false;
+
+            if (frequency_calculation_on)
+                updateFrequencyCalculationBuffer(doesSpike);
+
+            return doesSpike;
+        }
+
+        private void updateFrequencyCalculationBuffer(bool val)
+        {
+            for (int i = 1; i < frequency_calculation_buffer_size; i++)
+            {
+                frequency_calculation_buffer[frequency_calculation_buffer_size - i] = frequency_calculation_buffer[frequency_calculation_buffer_size - (i + 1)];
+            }
+            frequency_calculation_buffer[0] = val;
+        }
+
+        public float GetSpikingFrequency()
+        {
+            int spikeCount = 0;
+            for (int i = 0; i < frequency_calculation_buffer_size; i++)
+            {
+                if (frequency_calculation_buffer[i])
+                    spikeCount++;
+            }
+            return spikeCount / (float)frequency_calculation_buffer_size;
         }
     }
 }

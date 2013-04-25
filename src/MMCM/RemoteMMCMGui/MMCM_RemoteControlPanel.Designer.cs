@@ -163,7 +163,6 @@
             // 
             // feedbakcTextBoxInfluence
             // 
-            this.feedbakcTextBoxInfluence.Enabled = false;
             this.feedbakcTextBoxInfluence.Location = new System.Drawing.Point(6, 75);
             this.feedbakcTextBoxInfluence.Name = "feedbakcTextBoxInfluence";
             this.feedbakcTextBoxInfluence.Size = new System.Drawing.Size(30, 20);
@@ -181,7 +180,6 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Enabled = false;
             this.label1.Location = new System.Drawing.Point(41, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 13);
