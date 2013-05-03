@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8B7D3D4F-46A9-4CBC-9592-496EF29B6A8E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CVZ_Core.Gui</RootNamespace>
+    <AssemblyName>Complement_GUI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="YarpCS, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\yarp2\bindings\csBuild\YarpCS\YarpCS\bin\Release\YarpCS.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CTPC_RemoteControlPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CTPC_RemoteControlPanel.Designer.cs">
+      <DependentUpon>CTPC_RemoteControlPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MMCM_RemoteControlPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MMCM_RemoteControlPanel.Designer.cs">
+      <DependentUpon>MMCM_RemoteControlPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modalities\ImageModalityCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modalities\ImageModalityCtrl.Designer.cs">
+      <DependentUpon>ImageModalityCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modalities\IModalityControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modalities\IModalityControl.Designer.cs">
+      <DependentUpon>IModalityControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MMCM_ControlPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MMCM_ControlPanel.Designer.cs">
+      <DependentUpon>MMCM_ControlPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Modalities\StringModalityControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modalities\StringModalityControl.Designer.cs">
+      <DependentUpon>StringModalityControl.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CTPC_RemoteControlPanel.resx">
+      <DependentUpon>CTPC_RemoteControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MMCM_RemoteControlPanel.resx">
+      <DependentUpon>MMCM_RemoteControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modalities\ImageModalityCtrl.resx">
+      <DependentUpon>ImageModalityCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modalities\IModalityControl.resx">
+      <DependentUpon>IModalityControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MMCM_ControlPanel.resx">
+      <DependentUpon>MMCM_ControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modalities\StringModalityControl.resx">
+      <DependentUpon>StringModalityControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComplementYarp\Complement_Yarp.csproj">
+      <Project>{CCD18CD0-079C-4A60-A7F1-90933DD14D37}</Project>
+      <Name>Complement_Yarp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CVZ_Core\CVZ_Core.csproj">
+      <Project>{51873976-448D-48BF-83C1-C22EE0365C06}</Project>
+      <Name>CVZ_Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(TargetPath) $(SolutionDir)\..\bin</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
