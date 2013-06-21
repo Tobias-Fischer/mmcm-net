@@ -46,8 +46,8 @@ namespace CVZ_Core.GUI.Modalities
                     try
                     {
                         pictureBoxReal.Image = m.GetAsBmp(m.GetRealValue);
-				    pictureBoxPerceived.Image = m.GetAsBmp(m.PerceivedValue);
-				    pictureBoxPredicted.Image = m.GetAsBmp(m.PredictedValue);
+				        pictureBoxPerceived.Image = m.GetAsBmp(m.PerceivedValue);
+				        pictureBoxPredicted.Image = m.GetAsBmp(m.PredictedValue);
                     }
                         catch (Exception e)
                     {

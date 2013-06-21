@@ -221,7 +221,12 @@ namespace CVZ_Core.Modalities
 
 	   public virtual System.Drawing.Bitmap GetAsBmp(float[] value)
 	   {
-		  return new System.Drawing.Bitmap(0, 0);
+           System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(1, value.Length);
+           for (int i = 0; i < size; i++)
+           {
+               bmp.SetPixel(0, i, ColorInterpolator.InterpolateBetween(System.Drawing.Color.Black, System.Drawing.Color.Lime, value[i]));
+           }
+		  return bmp;
 	   }
 
         public IModality(SerializationInfo info, StreamingContext ctxt)
