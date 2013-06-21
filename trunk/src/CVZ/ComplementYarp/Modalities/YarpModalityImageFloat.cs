@@ -125,7 +125,7 @@ namespace CVZ_Core.Modalities
         public override System.Drawing.Bitmap GetAsBmp(float[] rawValues)
         {
             ImageFloat img = new ImageFloat();
-		  ImageManipulation.Vector2Image(rawValues, ref img,w, h);
+		    ImageManipulation.Vector2Image(rawValues, ref img,w, h);
             return img.toBmp();
         }
 
