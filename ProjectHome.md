@@ -1,0 +1,1 @@
+C# framework for developing large hierarchical models of self organizing neural maps.
